@@ -28,7 +28,7 @@ function refreshCounter() {
   idTree.normalBeat.pause();
   idTree.normalBeat.currentTime = 0;
 
-  if (beatCounter == 0 && idTree.beatCounterTable.style.display === "flex") {
+  if (beatCounter === 0 && idTree.beatCounterTable.style.display === "flex") {
     idTree.accentBeat.play();
   } else {
     idTree.normalBeat.play();
@@ -52,7 +52,7 @@ changeBeatCounter();
 
 onchange = function (event) {
   changeBeatCounter();
-  if (idTree.playButton.innerHTML == "Pause") {
+  if (idTree.playButton.innerHTML === "Pause") {
     clearInterval(metronome);
     for (let i = 0; i < beatCounterElements.length; i++) {
       beatCounterElements[i].style.backgroundColor = pickedColor[1];
@@ -76,7 +76,7 @@ function playMetronome() {
 
     idTree.playButton.innerHTML = "Pause";
 
-  } else if (idTree.playButton.innerHTML == "Pause") {
+  } else if (idTree.playButton.innerHTML === "Pause") {
     clearInterval(metronome);
     idTree.playButton.innerHTML = "Play";
     for (let i = 0; i < beatCounterElements.length; i++) {
