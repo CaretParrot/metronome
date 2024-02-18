@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html style="background-color: transparent">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" id="themeColor" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://caretparrot.github.io/My-Libraries/dark.css" />
+    <link rel="icon" type="image/x-icon" href="https://caretparrot.github.io/My-Libraries/Profile%20Picture.png" />
+    <link rel="manifest" href="https://online-metronome.glitch.me/manifest.json" />
+    <title>Metronome</title>
+    <style>
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      * {
+        text-align: center;
+        color: Black;
+      }
+
+      div {
+        flex-wrap: wrap;
+      }
+
+      button, input {
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 10vh;
+        font-size: 4vmin;
+        margin: 0;
+      }
+      
+      button:hover {
+        filter: brightness(120%);
+      }
+
+      p {
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+        font-size: 4vmin;
+        margin: 0;
+      }
+    </style>
+    <script defer src="https://caretparrot.github.io/My-Libraries/gpl.js" ></script>
+    <script defer src="https://caretparrot.github.io/My-Libraries/dark.css"></script>
+    <script defer src="https://caretparrot.github.io/My-Libraries/random-color.js"></script>
+    <script defer src="https://online-metronome.glitch.me/script.js"></script>
+  </head>
+  <div class="full-width" style="padding: 0; justify-content: center; align-items: center;">
+    <button id="playButton" onclick="playMetronome()">Play</button>
+    <input id="tempo" type="number" min="1" max="1000" value="60" />
+    <input id="beats" type="number" min="1" max="12" value="4" />
+    <button id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
+    <button id="stop" onclick="stop()">Stop</button>
+  </div>
+  <div style="display: none !important; justify-content: center; align-items: center; padding: 0;" id="beatCounterTable">
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+    <p>10</p>
+    <p>11</p>
+    <p>12</p>
+  </div>
+  <div style="padding: 0;" class="full-width">
+    <button class="droneButton" onclick="playDrone('C')">C</button>
+    <button class="droneButton" onclick="playDrone('C#')">C#/Db</button>
+    <button class="droneButton" onclick="playDrone('D')">D</button>
+    <button class="droneButton" onclick="playDrone('Eb')">D#/Eb</button>
+    <button class="droneButton" onclick="playDrone('E')">E</button>
+    <button class="droneButton" onclick="playDrone('F')">F</button>
+    <button class="droneButton" onclick="playDrone('F#')" >F#/Gb</button>
+    <button class="droneButton" onclick="playDrone('G')">G</button>
+    <button class="droneButton" onclick="playDrone('Ab')">G#/Ab</button>
+    <button class="droneButton" onclick="playDrone('A')">A</button>
+    <button class="droneButton" onclick="playDrone('Bb')">A#/Bb</button>
+    <button class="droneButton" onclick="playDrone('B')">B</button>
+  </div>
+  <div id="toolbar" style="padding: 0;">
+    <div id="savedTempos" style="margin: 0;" class="full-width"></div>
+    <button onclick="saveTempo()">Save Tempo</button>
+    <button onclick="deleteTempos()">Delete All</button>
+  </div>
+  <audio id="normalBeat"><source src="https://cdn.glitch.global/befe2f58-9fcb-4b15-85cf-08cfc9f79248/Normal.wav?v=1703522575952" /></audio>
+  <audio id="accentBeat"><source src="https://cdn.glitch.global/befe2f58-9fcb-4b15-85cf-08cfc9f79248/Accent.wav?v=1703522292088"/></audio>
+  <audio id="A" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/A.mp3?v=1703291829087"/></audio>
+  <audio id="Bb" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/Bb.mp3?v=1703291977512" /></audio>
+  <audio id="B" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/B.mp3?v=1703292143882" /></audio>
+  <audio id="C" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/C.mp3?v=1703285185372" /></audio>
+  <audio id="C#" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/C%23.mp3?v=1703285381694" /></audio>
+  <audio id="D" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/D.mp3?v=1703285581638" /></audio>
+  <audio id="Eb" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/D%23.mp3?v=1703285744695" /></audio>
+  <audio id="E" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/E.mp3?v=1703286078064" /></audio>
+  <audio id="F" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/F.mp3?v=1703286972535" /></audio>
+  <audio id="F#" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/F%23.mp3?v=1703290723343" /></audio>
+  <audio id="G" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/G.mp3?v=1703291167384" /></audio>
+  <audio id="Ab" class="drone"><source src="https://cdn.glitch.me/befe2f58-9fcb-4b15-85cf-08cfc9f79248/G%23.mp3?v=1703291599853" /></audio>
+</html>
