@@ -1,7 +1,7 @@
 {
   "name": "Metronome",
   "short_name": "Metronome",
-  "start_url": "/",
+  "start_url": "/Metronome",
   "icons": [
     {
       "src": "https://caretparrot.github.io/My-Libraries/Profile%20Picture.png",
