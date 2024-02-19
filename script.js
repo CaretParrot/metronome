@@ -121,4 +121,4 @@ function saveTempo() {
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
-document.body.style.backgroundColor = "transparent";
+idTree.container.style.backgroundColor = "transparent";
