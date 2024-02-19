@@ -8,6 +8,8 @@ let audioElements = document.getElementsByClassName("drone");
 
 idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
+randomColor.paint();
+
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
 }
@@ -119,5 +121,4 @@ function saveTempo() {
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
-randomColor.paint();
 document.body.backgroundColor = "transparent";
