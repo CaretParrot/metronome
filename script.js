@@ -96,10 +96,11 @@ function enableAccent() {
 }
 
 function playDrone(note) {
-    id(note).play();
+    idTree[note].play();
 }
 
 function stop() {
+    alert(classTree);
     let drones = classTree.drone;
     for (let i = 0; i < drones.length; i++) {
         drones[i].pause();
