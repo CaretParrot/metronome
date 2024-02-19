@@ -118,3 +118,5 @@ function saveTempo() {
     idTree.savedTempos.innerHTML += `<button style="background-color: transparent;" onclick="document.getElementById('tempo').value = ${id("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${id("tempo").value}</button>`;
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
+
+document.body.backgroundColor = "transparent";
