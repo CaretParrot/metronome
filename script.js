@@ -119,4 +119,5 @@ function saveTempo() {
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
+randomColor.paint();
 document.body.backgroundColor = "transparent";
