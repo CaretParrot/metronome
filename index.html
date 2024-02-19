@@ -29,6 +29,7 @@
 
             div {
                 flex-wrap: wrap;
+                padding: 0;
             }
 
             button,
@@ -60,7 +61,8 @@
         <script defer src="https://caretparrot.github.io/My-Libraries/random-color.js"></script>
         <script defer src="https://caretparrot.github.io/Metronome/script.js"></script>
     </head>
-    <div style="padding: 0; background-color: transparent; flex-wrap: wrap; margin-bottom: 1vmin;" class="full-width full-height">
+    <div style="padding: 0; background-color: transparent !important; flex-wrap: wrap; margin-bottom: 1vmin;"
+        class="full-width full-height">
         <div class="full-width" style="padding: 0; justify-content: center; align-items: center;">
             <button id="playButton" onclick="playMetronome()">Play</button>
             <input id="tempo" type="number" min="1" max="1000" value="60" />
