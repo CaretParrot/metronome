@@ -100,8 +100,7 @@ function playDrone(note) {
 }
 
 function stop() {
-    alert(classTree);
-    let drones = classTree.drone;
+    let drones = document.getElementsByClassName("drone");
     for (let i = 0; i < drones.length; i++) {
         drones[i].pause();
         drones[i].currentTime = 0;
