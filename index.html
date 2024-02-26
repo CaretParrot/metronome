@@ -61,47 +61,47 @@
 
     <body style="background-color: transparent;">
         <div id="container" style="padding: 0; background-color: transparent; flex-wrap: wrap; margin-bottom: 1vmin;"
-            class="full-width full-height">
-            <div class="full-width full-height" style="padding: 0; justify-content: center; align-items: center;">
-                <button class="full-height" id="playButton" onclick="playMetronome()">Play</button>
-                <input class="full-height" id="tempo" type="number" min="1" max="1000" value="60" />
-                <input class="full-height" id="beats" type="number" min="1" max="12" value="4" />
-                <button class="full-height" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
-                <button class="full-height" id="stop" onclick="stop()">Stop</button>
+            class="full-width">
+            <div class="full-width" style="padding: 0; justify-content: center; align-items: center;">
+                <button class="" id="playButton" onclick="playMetronome()">Play</button>
+                <input class="" id="tempo" type="number" min="1" max="1000" value="60" />
+                <input class="" id="beats" type="number" min="1" max="12" value="4" />
+                <button class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
+                <button class="" id="stop" onclick="stop()">Stop</button>
             </div>
-            <div class="full-width full-height" style="display: none !important; justify-content: center; align-items: center; padding: 0;"
+            <div class="full-width" style="display: none !important; justify-content: center; align-items: center; padding: 0;"
                 id="beatCounterTable">
-                <p class="full-height">1</p>
-                <p class="full-height">2</p>
-                <p class="full-height">3</p>
-                <p class="full-height">4</p>
-                <p class="full-height">5</p>
-                <p class="full-height">6</p>
-                <p class="full-height">7</p>
-                <p class="full-height">8</p>
-                <p class="full-height">9</p>
-                <p class="full-height">10</p>
-                <p class="full-height">11</p>
-                <p class="full-height">12</p>
+                <p class="">1</p>
+                <p class="">2</p>
+                <p class="">3</p>
+                <p class="">4</p>
+                <p class="">5</p>
+                <p class="">6</p>
+                <p class="">7</p>
+                <p class="">8</p>
+                <p class="">9</p>
+                <p class="">10</p>
+                <p class="">11</p>
+                <p class="">12</p>
             </div>
-            <div style="padding: 0;" class="full-width full-height">
-                <button class="droneButton full-height" onclick="playDrone('C')">C</button>
-                <button class="droneButton full-height" onclick="playDrone('C#')">C#/Db</button>
-                <button class="droneButton full-height" onclick="playDrone('D')">D</button>
-                <button class="droneButton full-height" onclick="playDrone('Eb')">D#/Eb</button>
-                <button class="droneButton full-height" onclick="playDrone('E')">E</button>
-                <button class="droneButton full-height" onclick="playDrone('F')">F</button>
-                <button class="droneButton full-height" onclick="playDrone('F#')">F#/Gb</button>
-                <button class="droneButton full-height" onclick="playDrone('G')">G</button>
-                <button class="droneButton full-height" onclick="playDrone('Ab')">G#/Ab</button>
-                <button class="droneButton full-height" onclick="playDrone('A')">A</button>
-                <button class="droneButton full-height" onclick="playDrone('Bb')">A#/Bb</button>
-                <button class="droneButton full-height" onclick="playDrone('B')">B</button>
+            <div style="padding: 0;" class="full-width">
+                <button class="droneButton" onclick="playDrone('C')">C</button>
+                <button class="droneButton" onclick="playDrone('C#')">C#/Db</button>
+                <button class="droneButton" onclick="playDrone('D')">D</button>
+                <button class="droneButton" onclick="playDrone('Eb')">D#/Eb</button>
+                <button class="droneButton" onclick="playDrone('E')">E</button>
+                <button class="droneButton" onclick="playDrone('F')">F</button>
+                <button class="droneButton" onclick="playDrone('F#')">F#/Gb</button>
+                <button class="droneButton" onclick="playDrone('G')">G</button>
+                <button class="droneButton" onclick="playDrone('Ab')">G#/Ab</button>
+                <button class="droneButton" onclick="playDrone('A')">A</button>
+                <button class="droneButton" onclick="playDrone('Bb')">A#/Bb</button>
+                <button class="droneButton" onclick="playDrone('B')">B</button>
             </div>
-            <div id="toolbar" style="padding: 0;" class="full-width full-height">
+            <div id="toolbar" style="padding: 0;" class="full-width">
                 <button onclick="saveTempo()">Save Tempo</button>
                 <button onclick="deleteTempos()">Delete All</button>
-                <div id="savedTempos" style="margin: 0;" class="full-width full-height"></div>
+                <div id="savedTempos" style="margin: 0;" class="full-width"></div>
             </div>
         </div>
     </body>
