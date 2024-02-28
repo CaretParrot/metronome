@@ -117,7 +117,7 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(idTree.tempo.value);
-    idTree.savedTempos.innerHTML += `<button style="background-color: transparent;" onclick="document.getElementById('tempo').value = ${id("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${id("tempo").value}</button>`;
+    idTree.savedTempos.innerHTML += `<button style="background-color: transparent; :hover {filter: brightness(120%);}" onclick="document.getElementById('tempo').value = ${id("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${id("tempo").value}</button>`;
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
