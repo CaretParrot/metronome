@@ -37,11 +37,11 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.backgroundColor = pickedColor[1];
+        beatCounterElements[beatCounter].style.filter = "brightness(100%)";
         beatCounterElements[i].style.color = "Black";
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = pickedColor[2];
+    beatCounterElements[beatCounter].style.filter = "brightness(120%)";
     beatCounterElements[beatCounter].style.color = "Black";
     beatCounter++;
 
@@ -58,7 +58,7 @@ onchange = function (event) {
         clearInterval(metronome);
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = pickedColor[1];
+            beatCounterElements[beatCounter].style.filter = "brightness(100%)";
             beatCounterElements[i].style.color = "Black";
         }
         refreshCounter();
@@ -82,7 +82,7 @@ function playMetronome() {
         idTree.playButton.innerHTML = "Play";
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = pickedColor[1];
+            beatCounterElements[beatCounter].style.filter = "brightness(100%)";
             beatCounterElements[i].style.color = "Black";
         }
 
