@@ -38,6 +38,7 @@ function refreshCounter() {
 
     for (let i = 0; i < beatCounterElements.length; i++) {
         beatCounterElements[i].style.filter = "brightness(100%)";
+        beatCounterElements[i].style.filter = "luminance(100%)";
     }
 
     beatCounterElements[beatCounter].style.filter = "brightness(120%)";
