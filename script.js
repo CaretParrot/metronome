@@ -37,11 +37,10 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.filter = "brightness(100%)";
-        beatCounterElements[i].style.filter = "luminance(100%)";
+        beatCounterElements[i].style.backgroundColor = "hsl(from color h s l)";
     }
 
-    beatCounterElements[beatCounter].style.filter = "brightness(120%)";
+    beatCounterElements[i].style.backgroundColor = "hsl(from color h (s * 1.1) (l * 1.1))";
     beatCounter++;
 
     if (beatCounter > idTree.beats.value - 1) {
@@ -57,7 +56,7 @@ onchange = function (event) {
         clearInterval(metronome);
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[beatCounter].style.filter = "brightness(100%)";
+            beatCounterElements[i].style.backgroundColor = "hsl(from color h s l)";
         }
         refreshCounter();
         metronome = setInterval(function () {
@@ -80,7 +79,7 @@ function playMetronome() {
         idTree.playButton.innerHTML = "Play";
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[beatCounter].style.filter = "brightness(100%)";
+            beatCounterElements[i].style.backgroundColor = "hsl(from color h s l)";
         }
 
     }
@@ -114,7 +113,7 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(idTree.tempo.value);
-    idTree.savedTempos.innerHTML += `<button style="background-color: transparent; :hover {filter: brightness(120%);}" onclick="document.getElementById('tempo').value = ${id("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${id("tempo").value}</button>`;
+    idTree.savedTempos.innerHTML += `<button style="background-color: transparent;" onclick="document.getElementById('tempo').value = ${id("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${id("tempo").value}</button>`;
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
