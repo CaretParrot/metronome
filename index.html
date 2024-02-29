@@ -62,51 +62,49 @@
         <script defer src="https://caretparrot.github.io/Metronome/script.js"></script>
     </head>
 
-    <body style="background-color: transparent;">
-        <div id="container" style="padding: 0; background-color: transparent; flex-direction: column; margin-bottom: 1vmin;"
-            class="full-width">
-            <div class="full-width" style="padding: 0; justify-content: center; align-items: center; height: 100%;">
-                <button class="" id="playButton" onclick="playMetronome()">Play</button>
-                <input class="" id="tempo" type="number" min="1" max="1000" value="60" />
-                <input class="" id="beats" type="number" min="1" max="12" value="4" />
-                <button class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
-                <button class="" id="stop" onclick="stop()">Stop</button>
-                
-            </div>
-            <div class="full-width" style="display: none !important; justify-content: center; align-items: center; padding: 0; height: 100%;"
-                id="beatCounterTable">
-                <p class="">1</p>
-                <p class="">2</p>
-                <p class="">3</p>
-                <p class="">4</p>
-                <p class="">5</p>
-                <p class="">6</p>
-                <p class="">7</p>
-                <p class="">8</p>
-                <p class="">9</p>
-                <p class="">10</p>
-                <p class="">11</p>
-                <p class="">12</p>
-            </div>
-            <div style="padding: 0; height: 100%;" class="full-width">
-                <button class="droneButton" onclick="playDrone('C')">C</button>
-                <button class="droneButton" onclick="playDrone('C#')">C#/Db</button>
-                <button class="droneButton" onclick="playDrone('D')">D</button>
-                <button class="droneButton" onclick="playDrone('Eb')">D#/Eb</button>
-                <button class="droneButton" onclick="playDrone('E')">E</button>
-                <button class="droneButton" onclick="playDrone('F')">F</button>
-                <button class="droneButton" onclick="playDrone('F#')">F#/Gb</button>
-                <button class="droneButton" onclick="playDrone('G')">G</button>
-                <button class="droneButton" onclick="playDrone('Ab')">G#/Ab</button>
-                <button class="droneButton" onclick="playDrone('A')">A</button>
-                <button class="droneButton" onclick="playDrone('Bb')">A#/Bb</button>
-                <button class="droneButton" onclick="playDrone('B')">B</button>
-            </div>
-            <div id="toolbar" style="padding: 0; height: 100%;" class="full-width">
-                <button onclick="saveTempo()">Save Tempo</button>
-                <button onclick="deleteTempos()">Delete All</button>
-                <div id="savedTempos" style="margin: 0;" class="full-width"></div>
-            </div>
+    <body style="background-color: transparent; display: flex;">
+        <div class="full-width" style="padding: 0; justify-content: center; align-items: center; height: 100%;">
+            <button class="" id="playButton" onclick="playMetronome()">Play</button>
+            <input class="" id="tempo" type="number" min="1" max="1000" value="60" />
+            <input class="" id="beats" type="number" min="1" max="12" value="4" />
+            <button class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
+            <button class="" id="stop" onclick="stop()">Stop</button>
+
+        </div>
+        <div class="full-width"
+            style="display: none !important; justify-content: center; align-items: center; padding: 0; height: 100%;"
+            id="beatCounterTable">
+            <p class="">1</p>
+            <p class="">2</p>
+            <p class="">3</p>
+            <p class="">4</p>
+            <p class="">5</p>
+            <p class="">6</p>
+            <p class="">7</p>
+            <p class="">8</p>
+            <p class="">9</p>
+            <p class="">10</p>
+            <p class="">11</p>
+            <p class="">12</p>
+        </div>
+        <div style="padding: 0; height: 100%;" class="full-width">
+            <button class="droneButton" onclick="playDrone('C')">C</button>
+            <button class="droneButton" onclick="playDrone('C#')">C#/Db</button>
+            <button class="droneButton" onclick="playDrone('D')">D</button>
+            <button class="droneButton" onclick="playDrone('Eb')">D#/Eb</button>
+            <button class="droneButton" onclick="playDrone('E')">E</button>
+            <button class="droneButton" onclick="playDrone('F')">F</button>
+            <button class="droneButton" onclick="playDrone('F#')">F#/Gb</button>
+            <button class="droneButton" onclick="playDrone('G')">G</button>
+            <button class="droneButton" onclick="playDrone('Ab')">G#/Ab</button>
+            <button class="droneButton" onclick="playDrone('A')">A</button>
+            <button class="droneButton" onclick="playDrone('Bb')">A#/Bb</button>
+            <button class="droneButton" onclick="playDrone('B')">B</button>
+        </div>
+        <div id="toolbar" style="padding: 0; height: 100%;" class="full-width">
+            <button onclick="saveTempo()">Save Tempo</button>
+            <button onclick="deleteTempos()">Delete All</button>
+            <div id="savedTempos" style="margin: 0;" class="full-width"></div>
         </div>
     </body>
 
