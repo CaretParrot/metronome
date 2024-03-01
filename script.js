@@ -37,10 +37,10 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.backgroundColor = "hsl(from color h s l)";
+        beatCounterElements[i].style.backgroundColor = "hsl(from color h s l);";
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = "hsl(from color h (s * 1.1) (l * 1.1))";
+    beatCounterElements[beatCounter].style.backgroundColor = "hsl(from color h (s * 1.1) (l * 1.1));";
     beatCounter++;
 
     if (beatCounter > idTree.beats.value - 1) {
