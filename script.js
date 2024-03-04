@@ -5,6 +5,7 @@ let metronome;
 let beatCounter = 0;
 let savedTempos = [];
 let audioElements = document.getElementsByClassName("drone");
+let buttons = document.getelementsByTagName("button");
 
 idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
@@ -117,6 +118,6 @@ function saveTempo() {
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
-onmouseover = function (event) {
+buttons.onmouseover = function (event) {
     this.style.backgroundColor = pickedColor[2];
 }
