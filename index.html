@@ -59,11 +59,11 @@
 
     <body style="background-color: transparent; display: flex; flex-direction: column;">
         <div class="full-width" style="padding: 0; justify-content: center; align-items: center; height: 100%;">
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="" id="playButton" onclick="playMetronome()">Play</button>
-            <input onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" id="tempo" type="number" min="1" max="1000" value="60" />
-            <input onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" id="beats" type="number" min="1" max="12" value="4" />
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="" id="stop" onclick="stop()">Stop</button>
+            <button  class="" id="playButton" onclick="playMetronome()">Play</button>
+            <input  id="tempo" type="number" min="1" max="1000" value="60" />
+            <input  id="beats" type="number" min="1" max="12" value="4" />
+            <button  class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
+            <button  class="" id="stop" onclick="stop()">Stop</button>
         </div>
         <div class="full-width"
             style="display: none !important; justify-content: center; align-items: center; padding: 0; height: 100%;"
@@ -82,22 +82,22 @@
             <p class="">12</p>
         </div>
         <div style="padding: 0; height: 100%;" class="full-width">
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('C')">C</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('C#')">C#/Db</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('D')">D</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('Eb')">D#/Eb</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('E')">E</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('F')">F</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('F#')">F#/Gb</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('G')">G</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('Ab')">G#/Ab</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('A')">A</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('Bb')">A#/Bb</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" class="droneButton" onclick="playDrone('B')">B</button>
+            <button  class="droneButton" onclick="playDrone('C')">C</button>
+            <button  class="droneButton" onclick="playDrone('C#')">C#/Db</button>
+            <button  class="droneButton" onclick="playDrone('D')">D</button>
+            <button  class="droneButton" onclick="playDrone('Eb')">D#/Eb</button>
+            <button  class="droneButton" onclick="playDrone('E')">E</button>
+            <button  class="droneButton" onclick="playDrone('F')">F</button>
+            <button  class="droneButton" onclick="playDrone('F#')">F#/Gb</button>
+            <button  class="droneButton" onclick="playDrone('G')">G</button>
+            <button  class="droneButton" onclick="playDrone('Ab')">G#/Ab</button>
+            <button  class="droneButton" onclick="playDrone('A')">A</button>
+            <button  class="droneButton" onclick="playDrone('Bb')">A#/Bb</button>
+            <button  class="droneButton" onclick="playDrone('B')">B</button>
         </div>
         <div id="toolbar" style="padding: 0; height: 100%;" class="full-width">
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" onclick="saveTempo()">Save Tempo</button>
-            <button onmouseover="this.style.backgroundColor = pickedColor[2];" onmouseout="this.style.backgroundColor = pickedColor[1];" onclick="deleteTempos()">Delete All</button>
+            <button onclick="saveTempo()">Save Tempo</button>
+            <button onclick="deleteTempos()">Delete All</button>
             <div id="savedTempos" style="margin: 0;" class="full-width"></div>
         </div>
     </body>
