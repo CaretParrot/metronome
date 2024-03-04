@@ -118,6 +118,8 @@ function saveTempo() {
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
 }
 
-buttons.onmouseover = function (event) {
-    this.style.backgroundColor = pickedColor[2];
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onmouseover = function (event) {
+        this.style.backgroundColor = pickedColor[2];
+    }
 }
