@@ -59,11 +59,11 @@
 
     <body style="background-color: transparent; display: flex; flex-direction: column;">
         <div class="full-width" style="padding: 0; justify-content: center; align-items: center; height: 100%;">
-            <button class="" id="playButton" onclick="playMetronome()">Play</button>
-            <input class="" id="tempo" type="number" min="1" max="1000" value="60" />
-            <input class="" id="beats" type="number" min="1" max="12" value="4" />
-            <button class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
-            <button class="" id="stop" onclick="stop()">Stop</button>
+            <button onmouseover="this.style.backgroundColor = pickedColor[2];" class="" id="playButton" onclick="playMetronome()">Play</button>
+            <input onmouseover="this.style.backgroundColor = pickedColor[2];" class="" id="tempo" type="number" min="1" max="1000" value="60" />
+            <input onmouseover="this.style.backgroundColor = pickedColor[2];" class="" id="beats" type="number" min="1" max="12" value="4" />
+            <button onmouseover="this.style.backgroundColor = pickedColor[2];" class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
+            <button onmouseover="this.style.backgroundColor = pickedColor[2];" class="" id="stop" onclick="stop()">Stop</button>
         </div>
         <div class="full-width"
             style="display: none !important; justify-content: center; align-items: center; padding: 0; height: 100%;"
