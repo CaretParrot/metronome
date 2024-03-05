@@ -5,7 +5,7 @@ let metronome;
 let beatCounter = 0;
 let savedTempos = [];
 let audioElements = document.getElementsByClassName("drone");
-let buttons = document.getelementsByTagName("button");
+let buttons = document.getElementsByTagName("button");
 
 idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
