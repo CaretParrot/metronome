@@ -38,10 +38,10 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.backgroundColor = "hsl(from color h s l);";
+        beatCounterElements[i].style.backgroundColor = randomColor.pickedColor[60];
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = "hsl(from color h (s * 1.1) (l * 1.1));";
+    beatCounterElements[beatCounter].style.backgroundColor = randomColor.pickedColor[70];
     beatCounter++;
 
     if (beatCounter > idTree.beats.value - 1) {
@@ -57,7 +57,7 @@ onchange = function (event) {
         clearInterval(metronome);
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = "hsl(from color h s l)";
+            beatCounterElements[i].style.backgroundColor = randomColor.pickedColor[60];
         }
         refreshCounter();
         metronome = setInterval(function () {
@@ -80,7 +80,7 @@ function playMetronome() {
         idTree.playButton.innerHTML = "Play";
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = "hsl(from color h s l)";
+            beatCounterElements[i].style.backgroundColor = randomColor.pickedColor[60];
         }
 
     }
