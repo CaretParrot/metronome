@@ -122,4 +122,8 @@ for (let i = 0; i < buttons.length; i++) {
     buttons[i].onmouseover = function (event) {
         this.style.backgroundColor = pickedColor[2];
     }
+
+    buttons[i].onmouseout = function (event) {
+        this.style.backgroundColor = pickedColor[1];
+    }
 }
