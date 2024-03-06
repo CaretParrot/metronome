@@ -9,7 +9,7 @@ let buttons = document.getElementsByTagName("button");
 
 idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
-randomColor.paint();
+randomColor.paint(50, 60);
 
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
@@ -120,10 +120,10 @@ function saveTempo() {
 
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].onmouseover = function (event) {
-        this.style.backgroundColor = pickedColor[2];
+        this.style.backgroundColor = randomColor.pickedColor[70];
     }
 
     buttons[i].onmouseout = function (event) {
-        this.style.backgroundColor = pickedColor[1];
+        this.style.backgroundColor = randomColor.pickedColor[70];
     }
 }
