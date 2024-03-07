@@ -10,6 +10,7 @@ let buttons = document.getElementsByTagName("button");
 idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
 randomColor.paint(50, 60);
+refreshHover();
 
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
@@ -116,14 +117,17 @@ function saveTempo() {
     savedTempos.push(idTree.tempo.value);
     idTree.savedTempos.innerHTML += `<button style="background-color: transparent;" onclick="document.getElementById('tempo').value = ${id("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${id("tempo").value}</button>`;
     localStorage.setItem("temposSaved", idTree.savedTempos.innerHTML);
+    refreshHover();
 }
 
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].onmouseover = function (event) {
-        this.style.backgroundColor = randomColor.pickedColor[70];
-    }
+function refreshHover() {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].onmouseover = function (event) {
+            this.style.backgroundColor = randomColor.pickedColor[70];
+        }
 
-    buttons[i].onmouseout = function (event) {
-        this.style.backgroundColor = randomColor.pickedColor[60];
+        buttons[i].onmouseout = function (event) {
+            this.style.backgroundColor = randomColor.pickedColor[60];
+        }
     }
 }
