@@ -124,6 +124,6 @@ for (let i = 0; i < buttons.length; i++) {
     }
 
     buttons[i].onmouseout = function (event) {
-        this.style.backgroundColor = randomColor.pickedColor[70];
+        this.style.backgroundColor = randomColor.pickedColor[60];
     }
 }
