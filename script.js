@@ -128,7 +128,9 @@ function refreshHover() {
         }
 
         buttons[i].onmouseout = function (event) {
-            this.style.backgroundColor = randomColor.pickedColor[60];
+            if (buttons[i].className === "drone") {
+                this.style.backgroundColor = randomColor.pickedColor[60];
+            }
         }
     }
 
