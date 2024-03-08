@@ -7,6 +7,7 @@ let savedTempos = [];
 let audioElements = document.getElementsByClassName("drone");
 let buttons = document.getElementsByTagName("button");
 let inputs = document.getElementsByTagName("input");
+let drones = document.getElementsByClassName("drone");
 
 idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
@@ -101,7 +102,6 @@ function playDrone(note) {
 }
 
 function stop() {
-    let drones = document.getElementsByClassName("drone");
     for (let i = 0; i < drones.length; i++) {
         drones[i].pause();
         drones[i].currentTime = 0;
@@ -139,6 +139,12 @@ function refreshHover() {
 
         inputs[i].onmouseout = function (event) {
             this.style.backgroundColor = randomColor.pickedColor[60];
+        }
+    }
+
+    for (let i = 0; i < drones.length; i++) {
+        drones[i].onclick = function (event) {
+            this.style.backgroundColor = randomColor.pickedColor[70];
         }
     }
 }
