@@ -99,12 +99,14 @@ function enableAccent() {
 
 function playDrone(note) {
     idTree[note].play();
+    this.style.backgroundColor = randomColor.pickedColor[70];
 }
 
 function stop() {
     for (let i = 0; i < drones.length; i++) {
         drones[i].pause();
         drones[i].currentTime = 0;
+        drones[i].style.backgroundColor = randomColor.pickedColor[60];
     }
 }
 
@@ -124,11 +126,12 @@ function saveTempo() {
 function refreshHover() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].onmouseover = function (event) {
-            this.style.backgroundColor = randomColor.pickedColor[70];
+            if (buttons[i].className !== "droneButton") {
+                this.style.backgroundColor = randomColor.pickedColor[70];
+            }
         }
 
         buttons[i].onmouseout = function (event) {
-            console.log(buttons[i].className);
             if (buttons[i].className !== "droneButton") {
                 this.style.backgroundColor = randomColor.pickedColor[60];
             }
