@@ -142,11 +142,4 @@ function refreshHover() {
             this.style.backgroundColor = randomColor.pickedColor[60];
         }
     }
-
-    for (let i = 0; i < drones.length; i++) {
-        drones[i].onclick = function (event) {
-            drones[i].style.backgroundColor = randomColor.pickedColor[70];
-            drones[i].disabled = "true";
-        }
-    }
 }
