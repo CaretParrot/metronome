@@ -129,7 +129,7 @@ function refreshHover() {
 
         buttons[i].onmouseout = function (event) {
             console.log(buttons[i].className);
-            if (buttons[i].className === "droneButton") {
+            if (buttons[i].className !== "droneButton") {
                 this.style.backgroundColor = randomColor.pickedColor[60];
             }
         }
