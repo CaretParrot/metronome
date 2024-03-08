@@ -99,7 +99,6 @@ function enableAccent() {
 
 function playDrone(note) {
     idTree[note].play();
-    this.style.backgroundColor = randomColor.pickedColor[70];
 }
 
 function stop() {
