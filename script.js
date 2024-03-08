@@ -125,15 +125,11 @@ function saveTempo() {
 function refreshHover() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].onmouseover = function (event) {
-            if (buttons[i].className !== "droneButton") {
-                this.style.backgroundColor = randomColor.pickedColor[70];
-            }
+            this.style.backgroundColor = randomColor.pickedColor[70];
         }
 
         buttons[i].onmouseout = function (event) {
-            if (buttons[i].className !== "droneButton") {
-                this.style.backgroundColor = randomColor.pickedColor[60];
-            }
+            this.style.backgroundColor = randomColor.pickedColor[60];
         }
     }
 
