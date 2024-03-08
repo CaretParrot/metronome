@@ -9,10 +9,10 @@ let buttons = document.getElementsByTagName("button");
 let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
 
-idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
-
 randomColor.paint(50, 60);
 refreshHover();
+
+idTree.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
