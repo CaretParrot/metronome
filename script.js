@@ -41,10 +41,10 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.backgroundColor = randomColor.pickedColor[60];
+        beatCounterElements[i].style.backgroundColor = `hsl(${randomColor.randomHue}, 60%, 60%)`;
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = randomColor.pickedColor[70];
+    beatCounterElements[beatCounter].style.backgroundColor = `hsl(${randomColor.randomHue}, 70%, 70%)`;
     beatCounter++;
 
     if (beatCounter > document.getElementById("beats").value - 1) {
@@ -60,7 +60,7 @@ onchange = function (event) {
         clearInterval(metronome);
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = randomColor.pickedColor[60];
+            beatCounterElements[i].style.backgroundColor = `hsl(${randomColor.randomHue}, 60%, 60%)`;
         }
         refreshCounter();
         metronome = setInterval(function () {
@@ -83,7 +83,7 @@ function playMetronome() {
         document.getElementById("playButton").innerHTML = "Play";
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = randomColor.pickedColor[60];
+            beatCounterElements[i].style.backgroundColor = `hsl(${randomColor.randomHue}, 60%, 60%)`;
         }
 
     }
@@ -105,7 +105,7 @@ function stop() {
     for (let i = 0; i < audioElements.length; i++) {
         audioElements[i].pause();
         audioElements[i].currentTime = 0;
-        drones[i].style.backgroundColor = randomColor.pickedColor[60];
+        drones[i].style.backgroundColor = `hsl(${randomColor.randomHue}, 60%, 60%)`;
     }
 }
 
@@ -125,21 +125,21 @@ function saveTempo() {
 function refreshHover() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].onmouseover = function (event) {
-            this.style.backgroundColor = randomColor.pickedColor[70];
+            this.style.backgroundColor = `hsl(${randomColor.randomHue}, 70%, 70%)`;
         }
 
         buttons[i].onmouseout = function (event) {
-            this.style.backgroundColor = randomColor.pickedColor[60];
+            this.style.backgroundColor = `hsl(${randomColor.randomHue}, 60%, 60%)`;
         }
     }
 
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].onmouseover = function (event) {
-            this.style.backgroundColor = randomColor.pickedColor[70];
+            this.style.backgroundColor = `hsl(${randomColor.randomHue}, 70%, 70%)`;
         }
 
         inputs[i].onmouseout = function (event) {
-            this.style.backgroundColor = randomColor.pickedColor[60];
+            this.style.backgroundColor = `hsl(${randomColor.randomHue}, 60%, 60%)`;
         }
     }
 }
