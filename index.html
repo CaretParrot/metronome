@@ -36,9 +36,9 @@
                 padding: 0;
             }
 
-            div > * {
+            div>* {
                 height: 100%;
-            } 
+            }
 
             button,
             input,
@@ -59,14 +59,14 @@
     </head>
 
     <body style="display: flex; flex-direction: column;">
-        <div class="full-width">
+        <div style="width: 100%;">
             <button class="" id="playButton" onclick="playMetronome()">Play</button>
             <input id="tempo" type="number" min="1" max="1000" value="60" />
             <input id="beats" type="number" min="1" max="12" value="4" />
             <button class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
             <button class="" id="stop" onclick="stop()">Stop</button>
         </div>
-        <div class="full-width" style="display: none !important;" id="beatCounterTable">
+        <div style="display: none !important; width: 100%;" id="beatCounterTable">
             <p class="">1</p>
             <p class="">2</p>
             <p class="">3</p>
@@ -96,7 +96,7 @@
             <button class="droneButton" onclick="playDrone('Bb');">A#/Bb</button>
             <button class="droneButton" onclick="playDrone('B');">B</button>
         </div>
-        <div id="toolbar" class="full-width">
+        <div id="toolbar" style="width: 100%;">
             <button style="height: 50%;" onclick="saveTempo()">Save Tempo</button>
             <button style="height: 50%;" onclick="deleteTempos()">Delete All</button>
             <div style="height: 50%; margin: 0;" id="savedTempos" class="full-width"></div>
