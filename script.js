@@ -117,12 +117,13 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(document.getElementById("tempo").value);
-    document.getElementById("savedTempos").innerHTML += `<button style="background-color: transparent;" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
+    document.getElementById("savedTempos").innerHTML += `<button onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
     localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
     refreshHover();
 }
 
 function refreshHover() {
+    buttons = document.getElementsByTagName("button");
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].onmouseover = function (event) {
             this.style.backgroundColor = `hsl(${randomColor.randomHue}, 70%, 70%)`;
