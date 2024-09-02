@@ -22,18 +22,28 @@
                 appearance: none;
             }
 
+            body {
+                display: flex;
+            }
+
             * {
                 text-align: center;
                 color: Black;
+                flex-flow: row nowrap;
+            }
+
+            body >* :not(script) {
+                display: flex;
             }
 
             div {
                 margin: 0;
                 padding: 0;
-                flex-wrap: wrap;
                 align-items: center;
                 justify-content: center;
                 background-color: transparent !important;
+                flex-flow: row wrap;
+                display: flex;
             }
 
             button,
