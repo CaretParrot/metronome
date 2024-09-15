@@ -1,0 +1,38 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+body {
+    display: flex;
+}
+
+* {
+    text-align: center;
+    color: Black;
+    flex-flow: row nowrap;
+}
+
+body>* :not(script) {
+    display: flex;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent !important;
+    flex-flow: row wrap;
+    display: flex;
+}
+
+button,
+input,
+p {
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+}

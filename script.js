@@ -117,7 +117,7 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(document.getElementById("tempo").value);
-    document.getElementById("savedTempos").innerHTML += `<button onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
+    document.getElementById("savedTempos").innerHTML += `<button style="background-color: hsl(${randomColor.randomHue}, 60%, 60%);" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
     localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
     refreshHover();
 }
