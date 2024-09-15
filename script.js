@@ -28,6 +28,8 @@ function changeBeatCounter() {
     }
 }
 
+changeBeatCounter();
+
 function refreshCounter() {
     document.getElementById("accentBeat").pause();
     document.getElementById("accentBeat").currentTime = 0;

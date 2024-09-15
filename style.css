@@ -35,4 +35,9 @@ p {
     font-size: 2rem;
     align-items: center;
     justify-content: center;
+    height: calc(100% - 2rem);
+}
+
+#savedTempos {
+    margin: 0;
 }
