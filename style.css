@@ -41,3 +41,13 @@ p {
 #savedTempos {
     margin: 0;
 }
+
+::-moz-selection {
+    color: hsl(240, 0%, 20%);
+    background: hsl(240, 0%, 80%);
+}
+
+::selection {
+    color: hsl(240, 20%, 20%);
+    background: hsl(240, 0%, 80%);
+}
