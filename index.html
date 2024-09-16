@@ -22,11 +22,11 @@
 
     <body style="display: flex; flex-direction: column;">
         <div>
-            <button class="" id="playButton" onclick="playMetronome()">Play</button>
-            <input id="tempo" type="number" min="1" max="1000" value="60" />
-            <input id="beats" type="number" min="1" max="12" value="4" />
-            <button class="" id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
-            <button class="" id="stop" onclick="stop()">Stop</button>
+            <button title="Plays and pauses the metronome." id="playButton" onclick="playMetronome()">Play</button>
+            <input title="Changes the tempo of the metronome." id="tempo" type="number" min="1" max="1000" value="60" />
+            <input title="Changes the number of beats in a measure." id="beats" type="number" min="1" max="12" value="4" />
+            <button title="Opens and closes the beat counter and toggles whether the first note is accented." id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
+            <button title="Stops all of the currently playing drones." id="stop" onclick="stop()" disabled>Stop</button>
         </div>
         <div style="display: none !important;" id="beatCounterTable">
             <p class="">1</p>
@@ -59,8 +59,8 @@
             <button class="droneButton" onclick="playDrone('B');">B</button>
         </div>
         <div id="toolbar">
-            <button onclick="saveTempo()">Save Tempo</button>
-            <button onclick="deleteTempos()">Delete All</button>
+            <button title="Saves the current tempo to your list." onclick="saveTempo()">Save Tempo</button>
+            <button title="Deletes all saved tempos." onclick="deleteTempos()">Delete All</button>
             <div id="savedTempos"></div>
         </div>
     </body>
