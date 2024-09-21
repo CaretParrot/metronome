@@ -18,3 +18,7 @@ The application also changes color every time you open it!
 - Hit one of the middle twelve buttons to play a drone. You can stack as many drones as you would like! Hit the stop button at the top right to stop all drones.
 - Save the current tempo to your history using the "Save Tempo" button. These will be saved across sessions.
 - Delete all tempos using the "Delete All" button.
+
+# Want This As a Mobile App?
+- Go to https://caretparrot.github.io/Metronome on your mobile device.
+- Click on the three dots (or menu button) on the address bar and look for an option that allows you to download the app!
