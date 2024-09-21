@@ -191,17 +191,3 @@ function toggleFlash() {
         enableAccent();
     }
 }
-
-onkeydown = function (event) {
-    if (event.key === "ArrowUp" && backgroundSaturation <= 90) {
-        backgroundSaturation += 5;
-        randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
-        refreshHover();
-    }
-
-    if (event.key === "ArrowDown" && backgroundSaturation >= 10) {
-        backgroundSaturation -= 5;
-        randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
-        refreshHover();
-    }
-}
