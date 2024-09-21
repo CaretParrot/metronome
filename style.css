@@ -22,8 +22,6 @@ body>* :not(script) {
 div {
     margin: 0;
     padding: 0;
-    align-items: center;
-    justify-content: center;
     background-color: transparent !important;
     flex-flow: row wrap;
     display: flex;
@@ -42,12 +40,24 @@ p {
     margin: 0;
 }
 
-::-moz-selection {
-    color: hsl(240, 0%, 20%);
-    background: hsl(240, 0%, 80%);
+::selection {
+    color: White;
+    background-color: hsl(0, 0%, 40%)
 }
 
-::selection {
-    color: hsl(240, 20%, 20%);
-    background: hsl(240, 0%, 80%);
+#homeWrapper {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    flex-flow: column wrap;
+    width: 100%;
+    height: 100%;
+}
+
+#droneTable {
+    flex-flow: row wrap;
+}
+
+#flash {
+    display: none;
 }
