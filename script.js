@@ -54,7 +54,11 @@ function refreshCounter() {
         beatCounterElements[i].style.backgroundColor = randomElementColor;
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = randomHoverColor;
+    if (document.getElementById("flashButton").innerHTML === "Flash") {
+        beatCounterElements[beatCounter].style.backgroundColor = randomHoverColor;
+    } else {
+        beatCounterElements[beatCounter].style.backgroundColor = "White";
+    }
     beatCounter++;
 
     if (beatCounter > document.getElementById("beats").value - 1) {
@@ -158,6 +162,10 @@ function refreshHover() {
             this.style.backgroundColor = randomElementColor;
         }
     }
+
+    randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
+    randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
+    randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
 }
 
 function toggleFlash() {
@@ -189,5 +197,12 @@ function toggleFlash() {
         document.getElementById("enableAccent").style.display = "flex";
         document.getElementById("flashButton").innerHTML = "Flash";
         enableAccent();
+    }
+}
+
+onkeydown = function (event) {
+    if (event.key === " ") {
+        randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
+        refreshHover();
     }
 }
