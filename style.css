@@ -15,16 +15,10 @@ body {
     flex-flow: row nowrap;
 }
 
-body>* :not(script) {
-    display: flex;
-}
-
-div {
+div:not(#flash) {
     margin: 0;
     padding: 0;
     background-color: transparent !important;
-    flex-flow: row wrap;
-    display: flex;
 }
 
 button,
@@ -42,7 +36,7 @@ p {
 
 ::selection {
     color: White;
-    background-color: hsl(0, 0%, 40%)
+    background-color: hsl(0, 0%, 50%);
 }
 
 #homeWrapper {
@@ -60,4 +54,10 @@ p {
 
 #flash {
     display: none;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.beats {
+    transition: none;
 }

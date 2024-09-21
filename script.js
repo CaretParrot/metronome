@@ -7,14 +7,18 @@ let savedTempos = [];
 let audioElements = document.getElementsByClassName("drone");
 let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
+
 const backgroundSaturation = 50;
-const elementSaturation = backgroundSaturation + 10;
-const hoverSaturation = elementSaturation + 10;
 
 document.getElementById("savedTempos").innerHTML = localStorage.getItem("temposSaved");
 let buttons = document.getElementsByTagName("button");
 
-randomColor.paint(backgroundSaturation, elementSaturation);
+randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
+
+const randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
+const randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
+const randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
+
 refreshHover();
 changeBeatCounter();
 
@@ -47,10 +51,10 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.backgroundColor = `hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%)`;
+        beatCounterElements[i].style.backgroundColor = randomElementColor;
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = `hsl(${randomColor.randomHue}, ${hoverSaturation}%, ${hoverSaturation}%)`;
+    beatCounterElements[beatCounter].style.backgroundColor = randomHoverColor;
     beatCounter++;
 
     if (beatCounter > document.getElementById("beats").value - 1) {
@@ -58,23 +62,27 @@ function refreshCounter() {
     }
 }
 
-onchange = function (event) {
-    changeBeatCounter();
-    if (document.getElementById("playButton").innerHTML === "Pause") {
-        clearInterval(metronome);
-        beatCounter = 0;
-        for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = `hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%)`;
-        }
-        refreshCounter();
-        metronome = setInterval(function () {
+oninput = function (event) {
+    if (document.getElementById("beats").value !== "" && document.getElementById("tempo").value !== "") {
+        changeBeatCounter();
+        if (document.getElementById("playButton").innerHTML === "Pause") {
+            clearInterval(metronome);
+            beatCounter = 0;
+            for (let i = 0; i < beatCounterElements.length; i++) {
+                beatCounterElements[i].style.backgroundColor = randomElementColor;
+            }
             refreshCounter();
-        }, 60000 / document.getElementById("tempo").value);
+
+            metronome = setInterval(function () {
+                refreshCounter();
+            }, 60000 / document.getElementById("tempo").value);
+        }
     }
 }
 
 function playMetronome() {
     if (document.getElementById("playButton").innerHTML === "Play") {
+
         refreshCounter();
         document.getElementById("playButton").innerHTML = "Pause";
 
@@ -87,7 +95,7 @@ function playMetronome() {
         document.getElementById("playButton").innerHTML = "Play";
         beatCounter = 0;
         for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = `hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%)`;
+            beatCounterElements[i].style.backgroundColor = randomElementColor;
         }
 
     }
@@ -111,7 +119,7 @@ function stop() {
     for (let i = 0; i < audioElements.length; i++) {
         audioElements[i].pause();
         audioElements[i].currentTime = 0;
-        drones[i].style.backgroundColor = `hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%)`;
+        drones[i].style.backgroundColor = randomElementColor;
     }
     document.getElementById("stop").style.display = "none";
 }
@@ -124,7 +132,7 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(document.getElementById("tempo").value);
-    document.getElementById("savedTempos").innerHTML += `<button style="background-color: hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%);" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
+    document.getElementById("savedTempos").innerHTML += `<button style="background-color: ${randomElementColor};" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
     localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
     refreshHover();
 }
@@ -133,30 +141,53 @@ function refreshHover() {
     buttons = document.getElementsByTagName("button");
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].onmouseover = function (event) {
-            this.style.backgroundColor = `hsl(${randomColor.randomHue}, ${hoverSaturation}%, ${hoverSaturation}%)`;
+            this.style.backgroundColor = randomHoverColor;
         }
 
         buttons[i].onmouseout = function (event) {
-            this.style.backgroundColor = `hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%)`;
+            this.style.backgroundColor = randomElementColor;
         }
     }
 
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].onmouseover = function (event) {
-            this.style.backgroundColor = `hsl(${randomColor.randomHue}, ${hoverSaturation}%, ${hoverSaturation}%)`;
+            this.style.backgroundColor = randomHoverColor;
         }
 
         inputs[i].onmouseout = function (event) {
-            this.style.backgroundColor = `hsl(${randomColor.randomHue}, ${elementSaturation}%, ${elementSaturation}%)`;
+            this.style.backgroundColor = randomElementColor;
         }
     }
 }
 
 function toggleFlash() {
     let droneTables = document.getElementsByClassName("droneTable");
-    for (let i = 0; i < droneTables.length; i++) {
-        droneTables[i].style.display = "none";
+    let audioElements = document.getElementsByTagName("audio");
+    if (document.getElementById("flashButton").innerHTML === "Flash") {
+        for (let i = 0; i < droneTables.length; i++) {
+            droneTables[i].style.display = "none";
+        }
+        for (let i = 0; i < audioElements.length; i++) {
+            audioElements[i].muted = true;
+        }
+        document.getElementById("toolbar").style.display = "none";
+        document.getElementById("enableAccent").style.display = "none";
+        document.getElementById("flashButton").innerHTML = "Exit";
+
+        if (document.getElementById("beatCounterTable").style.display === "none") {
+            enableAccent();
+        }
+
+    } else {
+        for (let i = 0; i < droneTables.length; i++) {
+            droneTables[i].style.display = "flex";
+        }
+        for (let i = 0; i < audioElements.length; i++) {
+            audioElements[i].muted = false;
+        }
+        document.getElementById("toolbar").style.display = "flex";
+        document.getElementById("enableAccent").style.display = "flex";
+        document.getElementById("flashButton").innerHTML = "Flash";
+        enableAccent();
     }
-    document.getElementById("toolbar").style.display = "none";
-    document.getElementById("flash").style.display = "flex";
 }
