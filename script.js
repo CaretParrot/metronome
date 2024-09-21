@@ -8,16 +8,16 @@ let audioElements = document.getElementsByClassName("drone");
 let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
 
-const backgroundSaturation = 50;
+let backgroundSaturation = 50;
 
 document.getElementById("savedTempos").innerHTML = localStorage.getItem("temposSaved");
 let buttons = document.getElementsByTagName("button");
 
 randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
 
-const randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
-const randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
-const randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
+let randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
+let randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
+let randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
 
 refreshHover();
 changeBeatCounter();
@@ -189,5 +189,19 @@ function toggleFlash() {
         document.getElementById("enableAccent").style.display = "flex";
         document.getElementById("flashButton").innerHTML = "Flash";
         enableAccent();
+    }
+}
+
+onkeydown = function (event) {
+    if (event.key === "ArrowUp" && backgroundSaturation <= 90) {
+        backgroundSaturation += 5;
+        randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
+        refreshHover();
+    }
+
+    if (event.key === "ArrowDown" && backgroundSaturation >= 10) {
+        backgroundSaturation -= 5;
+        randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
+        refreshHover();
     }
 }
