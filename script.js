@@ -1,5 +1,3 @@
-setupTree();
-
 let beatCounterElements = document.getElementById("beatCounterTable").children;
 let metronome;
 let beatCounter = 0;
