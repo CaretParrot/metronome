@@ -6,7 +6,7 @@ let audioElements = document.getElementsByClassName("drone");
 let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
 
-let backgroundSaturation = 50;
+const backgroundSaturation = 50;
 
 document.getElementById("savedTempos").innerHTML = localStorage.getItem("temposSaved");
 let buttons = document.getElementsByTagName("button");
