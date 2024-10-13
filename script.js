@@ -227,7 +227,6 @@ function toggleChallenge() {
                     audioElements[i].muted = false;
                 }
             }
-            console.log(randomMultiplier);
             randomMultiplier = Math.ceil(Math.random() * 8);
         }, 60000 / document.getElementById("tempo").value * randomMultiplier);
     } else {
