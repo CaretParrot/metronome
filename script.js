@@ -115,6 +115,8 @@ function enableAccent() {
 function playDrone(note) {
     document.getElementById(note).play();
     document.getElementById("stop").style.display = "initial";
+    document.getElementById("challengeButton").innerHTML = "Challenge";
+    clearInterval(randomGaps);
 }
 
 function stop() {
@@ -169,6 +171,10 @@ function refreshHover() {
 function toggleFlash() {
     let droneTables = document.getElementsByClassName("droneTable");
     let audioElements = document.getElementsByTagName("audio");
+    if (document.getElementById("challengeButton").innerHTML === "Exit") {
+        document.getElementById("challengeButton").innerHTML = "Challenge";
+        clearInterval(randomGaps);
+    }
     if (document.getElementById("flashButton").innerHTML === "Flash") {
         for (let i = 0; i < droneTables.length; i++) {
             droneTables[i].style.display = "none";
@@ -203,4 +209,30 @@ onkeydown = function (event) {
         randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
         refreshHover();
     }
+}
+
+function toggleChallenge() {
+    let randomGaps;
+    let audioElements = document.getElementsByTagName("audio");
+    let randomMultiplier = Math.ceil(Math.random() * 8);
+    if (document.getElementById("challengeButton").innerHTML === "Challenge") {
+        document.getElementById("challengeButton").innerHTML = "Exit";
+        randomGaps = setInterval(function () {
+            if (audioElements[0].muted === false) {
+                for (let i = 0; i < audioElements.length; i++) {
+                    audioElements[i].muted = true;
+                }
+            } else {
+                for (let i = 0; i < audioElements.length; i++) {
+                    audioElements[i].muted = false;
+                }
+            }
+            console.log(randomMultiplier);
+            randomMultiplier = Math.ceil(Math.random() * 8);
+        }, 60000 / document.getElementById("tempo").value * randomMultiplier);
+    } else {
+        document.getElementById("challengeButton").innerHTML = "Challenge";
+        clearInterval(randomGaps);
+    }
+    
 }
