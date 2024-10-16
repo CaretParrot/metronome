@@ -5,6 +5,7 @@ let savedTempos = [];
 let audioElements = document.getElementsByClassName("drone");
 let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
+let randomGaps;
 
 const backgroundSaturation = 50;
 
@@ -142,27 +143,6 @@ function saveTempo() {
 }
 
 function refreshHover() {
-    buttons = document.getElementsByTagName("button");
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].onmouseover = function (event) {
-            this.style.backgroundColor = randomHoverColor;
-        }
-
-        buttons[i].onmouseout = function (event) {
-            this.style.backgroundColor = randomElementColor;
-        }
-    }
-
-    for (let i = 0; i < inputs.length; i++) {
-        inputs[i].onmouseover = function (event) {
-            this.style.backgroundColor = randomHoverColor;
-        }
-
-        inputs[i].onmouseout = function (event) {
-            this.style.backgroundColor = randomElementColor;
-        }
-    }
-
     randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
     randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
     randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
@@ -171,16 +151,10 @@ function refreshHover() {
 function toggleFlash() {
     let droneTables = document.getElementsByClassName("droneTable");
     let audioElements = document.getElementsByTagName("audio");
-    if (document.getElementById("challengeButton").innerHTML === "Exit") {
-        document.getElementById("challengeButton").innerHTML = "Challenge";
-        clearInterval(randomGaps);
-    }
     if (document.getElementById("flashButton").innerHTML === "Flash") {
+        document.getElementById("challengeButton").style.display = "none";
         for (let i = 0; i < droneTables.length; i++) {
             droneTables[i].style.display = "none";
-        }
-        for (let i = 0; i < audioElements.length; i++) {
-            audioElements[i].muted = true;
         }
         document.getElementById("toolbar").style.display = "none";
         document.getElementById("enableAccent").style.display = "none";
@@ -189,13 +163,10 @@ function toggleFlash() {
         if (document.getElementById("beatCounterTable").style.display === "none") {
             enableAccent();
         }
-
     } else {
+        document.getElementById("challengeButton").style.display = "flex";
         for (let i = 0; i < droneTables.length; i++) {
             droneTables[i].style.display = "flex";
-        }
-        for (let i = 0; i < audioElements.length; i++) {
-            audioElements[i].muted = false;
         }
         document.getElementById("toolbar").style.display = "flex";
         document.getElementById("enableAccent").style.display = "flex";
@@ -212,10 +183,10 @@ onkeydown = function (event) {
 }
 
 function toggleChallenge() {
-    let randomGaps;
     let audioElements = document.getElementsByTagName("audio");
     let randomMultiplier = Math.ceil(Math.random() * 8);
     if (document.getElementById("challengeButton").innerHTML === "Challenge") {
+        document.getElementById("flashButton").style.display = "none";
         document.getElementById("challengeButton").innerHTML = "Exit";
         randomGaps = setInterval(function () {
             if (audioElements[0].muted === false) {
@@ -232,6 +203,7 @@ function toggleChallenge() {
     } else {
         document.getElementById("challengeButton").innerHTML = "Challenge";
         clearInterval(randomGaps);
+        document.getElementById("flashButton").style.display = "flex";
     }
     
 }
