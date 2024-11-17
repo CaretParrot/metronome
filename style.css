@@ -16,7 +16,7 @@ div {
 button,
 input,
 p {
-    font-size: 1.5rem;
+    font-size: 2rem;
     align-items: center;
     justify-content: center;
     height: calc(100% - 2rem);
