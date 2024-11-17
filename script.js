@@ -16,7 +16,6 @@ randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
 
 let randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
 let randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
-let randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
 
 refreshHover();
 changeBeatCounter();
@@ -53,11 +52,7 @@ function refreshCounter() {
         beatCounterElements[i].style.backgroundColor = randomElementColor;
     }
 
-    if (document.getElementById("flashButton").innerHTML === "Flash") {
-        beatCounterElements[beatCounter].style.backgroundColor = randomHoverColor;
-    } else {
-        beatCounterElements[beatCounter].style.backgroundColor = "White";
-    }
+    beatCounterElements[beatCounter].style.backgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 40}%, ${backgroundSaturation + 40}%)`;
     beatCounter++;
 
     if (beatCounter > document.getElementById("beats").value - 1) {
@@ -146,33 +141,6 @@ function refreshHover() {
     randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
     randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
     randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
-}
-
-function toggleFlash() {
-    let droneTables = document.getElementsByClassName("droneTable");
-    let audioElements = document.getElementsByTagName("audio");
-    if (document.getElementById("flashButton").innerHTML === "Flash") {
-        document.getElementById("challengeButton").style.display = "none";
-        for (let i = 0; i < droneTables.length; i++) {
-            droneTables[i].style.display = "none";
-        }
-        document.getElementById("toolbar").style.display = "none";
-        document.getElementById("enableAccent").style.display = "none";
-        document.getElementById("flashButton").innerHTML = "Exit";
-
-        if (document.getElementById("beatCounterTable").style.display === "none") {
-            enableAccent();
-        }
-    } else {
-        document.getElementById("challengeButton").style.display = "flex";
-        for (let i = 0; i < droneTables.length; i++) {
-            droneTables[i].style.display = "flex";
-        }
-        document.getElementById("toolbar").style.display = "flex";
-        document.getElementById("enableAccent").style.display = "flex";
-        document.getElementById("flashButton").innerHTML = "Flash";
-        enableAccent();
-    }
 }
 
 onkeydown = function (event) {

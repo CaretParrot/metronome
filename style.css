@@ -1,21 +1,13 @@
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
 body {
     display: flex;
 }
 
 * {
     text-align: center;
-    color: Black;
-    flex-flow: row nowrap;
+    color: Black !important;
 }
 
-div:not(#flash) {
+div {
     margin: 0;
     padding: 0;
     background-color: transparent !important;
@@ -24,7 +16,7 @@ div:not(#flash) {
 button,
 input,
 p {
-    font-size: 2rem;
+    font-size: 1.5rem;
     align-items: center;
     justify-content: center;
     height: calc(100% - 2rem);
@@ -60,4 +52,8 @@ p {
 
 .beats {
     transition: none;
+}
+
+#beatCounterTable {
+    display: none;
 }

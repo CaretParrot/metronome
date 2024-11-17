@@ -23,10 +23,9 @@
                 <input id="beats" type="number" min="1" max="12" value="4" />
                 <button id="enableAccent" onclick="enableAccent()">Accent &darr;</button>
                 <button id="stop" onclick="stop()">Stop</button>
-                <button id="flashButton" onclick="toggleFlash()">Flash</button>
                 <button id="challengeButton" onclick="toggleChallenge()">Challenge</button>
             </div>
-            <div style="display: none !important;" id="beatCounterTable">
+            <div id="beatCounterTable">
                 <p class="beats">1</p>
                 <p class="beats">2</p>
                 <p class="beats">3</p>
@@ -40,20 +39,18 @@
                 <p class="beats">11</p>
                 <p class="beats">12</p>
             </div>
-            <div class="droneTable">
+            <div id="droneTable">
                 <button class="droneButton" onclick="playDrone('C');">C</button>
-                <button class="droneButton" onclick="playDrone('C#');">C♯/D♭</button>
+                <button class="droneButton" onclick="playDrone('C#');">C♯<br>D♭</button>
                 <button class="droneButton" onclick="playDrone('D');">D</button>
-                <button class="droneButton" onclick="playDrone('Eb');">D♯/E♭</button>
+                <button class="droneButton" onclick="playDrone('Eb');">D♯<br>E♭</button>
                 <button class="droneButton" onclick="playDrone('E');">E</button>
                 <button class="droneButton" onclick="playDrone('F');">F</button>
-            </div>
-            <div class="droneTable">
-                <button class="droneButton" onclick="playDrone('F#');">F♯/G♭</button>
+                <button class="droneButton" onclick="playDrone('F#');">F♯<br>G♭</button>
                 <button class="droneButton" onclick="playDrone('G');">G</button>
-                <button class="droneButton" onclick="playDrone('Ab');">G♯/A♭</button>
+                <button class="droneButton" onclick="playDrone('Ab');">G♯<br>A♭</button>
                 <button class="droneButton" onclick="playDrone('A');">A</button>
-                <button class="droneButton" onclick="playDrone('Bb');">A♯/B♭</button>
+                <button class="droneButton" onclick="playDrone('Bb');">A♯<br>B♭</button>
                 <button class="droneButton" onclick="playDrone('B');">B</button>
             </div>
             <div id="toolbar">
