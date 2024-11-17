@@ -6,6 +6,7 @@ let audioElements = document.getElementsByClassName("drone");
 let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
 let randomGaps;
+let droneNumber = 0;
 
 const backgroundSaturation = 50;
 
@@ -25,6 +26,12 @@ document.getElementById("stop").style.display = "none";
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
 }
+
+for (let i = 0; i < drones.length; i++) {
+    drones[i].style.display = "none";
+}
+
+drones[droneNumber].style.display = "flex";
 
 function changeBeatCounter() {
     for (let i = 0; i < beatCounterElements.length; i++) {
@@ -174,4 +181,26 @@ function toggleChallenge() {
         document.getElementById("flashButton").style.display = "flex";
     }
     
+}
+
+function scrollDrones(right) {
+    for (let i = 0; i < drones.length; i++) {
+        drones[i].style.display = "none";
+    }
+
+    if (right) {
+        droneNumber++;
+        if (droneNumber > drones.length - 1) {
+            droneNumber = 0;
+        }
+
+        drones[droneNumber].style.display = "flex";
+    } else {
+        droneNumber--;
+        if (droneNumber < 0) {
+            droneNumber = 11;
+        }
+
+        drones[droneNumber].style.display = "flex";
+    }
 }
