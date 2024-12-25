@@ -1,7 +1,3 @@
-body {
-    display: flex;
-}
-
 * {
     text-align: center;
     color: Black !important;
@@ -35,7 +31,8 @@ p {
     margin: 0;
     padding: 0;
     background-color: transparent;
-    flex-flow: column wrap;
+    display: grid;
+    grid: auto / 100%;
     width: 100%;
     height: 100%;
 }
@@ -54,6 +51,12 @@ p {
     transition: none;
 }
 
-#beatCounterTable {
-    display: none;
+#droneTable {
+    display: grid;
+    grid: auto / calc(100% / 3) calc(100% / 3) calc(100% / 3);
+}
+
+#controls {
+    display: grid;
+    grid: auto / 20% 20% 20% 20% 20%;
 }

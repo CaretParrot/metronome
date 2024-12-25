@@ -7,6 +7,7 @@ let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
 let randomGaps;
 let droneNumber = 0;
+let accent = false;
 
 const backgroundSaturation = 50;
 
@@ -49,7 +50,7 @@ function refreshCounter() {
     document.getElementById("normalBeat").pause();
     document.getElementById("normalBeat").currentTime = 0;
 
-    if (beatCounter === 0 && document.getElementById("beatCounterTable").style.display === "flex") {
+    if (beatCounter === 0 && accent) {
         document.getElementById("accentBeat").play();
     } else {
         document.getElementById("normalBeat").play();
@@ -87,7 +88,6 @@ oninput = function (event) {
 
 function playMetronome() {
     if (document.getElementById("playButton").innerHTML === "Play") {
-
         refreshCounter();
         document.getElementById("playButton").innerHTML = "Pause";
 
@@ -106,18 +106,9 @@ function playMetronome() {
     }
 }
 
-function enableAccent() {
-    if (document.getElementById("beatCounterTable").style.display === "none") {
-        document.getElementById("beatCounterTable").style.display = "flex";
-    } else {
-        document.getElementById("beatCounterTable").style.display = "none";
-    }
-    changeBeatCounter();
-}
-
 function playDrone(note) {
     document.getElementById(note).play();
-    document.getElementById("stop").style.display = "initial";
+    document.getElementById("stop").style.display = "flex";
     document.getElementById("challengeButton").innerHTML = "Challenge";
     clearInterval(randomGaps);
 }
@@ -159,26 +150,27 @@ onkeydown = function (event) {
 
 function toggleChallenge() {
     let audioElements = document.getElementsByTagName("audio");
-    let randomMultiplier = Math.ceil(Math.random() * 8);
+    let randomMultiplier = Math.ceil(Math.random() * document.getElementById("beats").value * 2);
     if (document.getElementById("challengeButton").innerHTML === "Challenge") {
-        document.getElementById("flashButton").style.display = "none";
         document.getElementById("challengeButton").innerHTML = "Exit";
         randomGaps = setInterval(function () {
-            if (audioElements[0].muted === false) {
-                for (let i = 0; i < audioElements.length; i++) {
+            if (audioElements[0].muted === false && audioElements[1].muted === false) {
+                for (let i = 0; i < 2; i++) {
                     audioElements[i].muted = true;
                 }
             } else {
-                for (let i = 0; i < audioElements.length; i++) {
+                for (let i = 0; i < 2; i++) {
                     audioElements[i].muted = false;
                 }
             }
-            randomMultiplier = Math.ceil(Math.random() * 8);
+            randomMultiplier = Math.ceil(Math.random() * document.getElementById("beats").value * 2);
         }, 60000 / document.getElementById("tempo").value * randomMultiplier);
     } else {
         document.getElementById("challengeButton").innerHTML = "Challenge";
+        for (let i = 0; i < 2; i++) {
+            audioElements[i].muted = false;
+        }
         clearInterval(randomGaps);
-        document.getElementById("flashButton").style.display = "flex";
     }
     
 }
