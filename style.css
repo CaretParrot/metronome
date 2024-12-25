@@ -55,8 +55,3 @@ p {
     display: grid;
     grid: auto / calc(100% / 3) calc(100% / 3) calc(100% / 3);
 }
-
-#controls {
-    display: grid;
-    grid: auto / 20% 20% 20% 20% 20%;
-}
