@@ -21,7 +21,7 @@
                 <button id="playButton" onclick="playMetronome()">Play</button>
                 <input id="tempo" type="number" min="1" max="1000" value="60" />
                 <input id="beats" type="number" min="1" max="12" value="4" />
-                <button id="enableAccent" onclick="accent = !accent; document.getElementById(`enableAccent`).innerHTML = `Accent Off`;">Accent On</button>
+                <button id="enableAccent" onclick="toggleAccent()">></button>
                 <button id="stop" onclick="stop()">Stop</button>
                 <button id="challengeButton" onclick="toggleChallenge()">Challenge</button>
             </div>

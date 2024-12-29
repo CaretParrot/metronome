@@ -196,3 +196,13 @@ function scrollDrones(right) {
         drones[droneNumber].style.display = "flex";
     }
 }
+
+function toggleAccent() { 
+    accent = !accent;
+    if (accent) {
+        document.getElementById(`enableAccent`).innerHTML = `Off`;
+    } else {
+        document.getElementById(`enableAccent`).innerHTML = `>`;
+    }
+    
+}
