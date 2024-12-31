@@ -9,17 +9,11 @@ let randomGaps;
 let droneNumber = 0;
 let accent = false;
 
-const backgroundSaturation = 50;
-
 document.getElementById("savedTempos").innerHTML = localStorage.getItem("temposSaved");
 let buttons = document.getElementsByTagName("button");
 
-randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
+colorPalletes.paint();
 
-let randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
-let randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
-
-refreshHover();
 changeBeatCounter();
 
 document.getElementById("stop").style.display = "none";
@@ -57,10 +51,12 @@ function refreshCounter() {
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.backgroundColor = randomElementColor;
+        beatCounterElements[i].id = "";
     }
 
-    beatCounterElements[beatCounter].style.backgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 40}%, ${backgroundSaturation + 40}%)`;
+    beatCounterElements[beatCounter].id = "activeBeat";
+    document.getElementById("activeBeat").backgroundColor = `hsl(${colorPalletes.savedColor}, 45%, 90%)`;
+
     beatCounter++;
 
     if (beatCounter > document.getElementById("beats").value - 1) {
@@ -74,14 +70,9 @@ oninput = function (event) {
         if (document.getElementById("playButton").innerHTML === "Pause") {
             clearInterval(metronome);
             beatCounter = 0;
-            for (let i = 0; i < beatCounterElements.length; i++) {
-                beatCounterElements[i].style.backgroundColor = randomElementColor;
-            }
             refreshCounter();
 
-            metronome = setInterval(function () {
-                refreshCounter();
-            }, 60000 / document.getElementById("tempo").value);
+            metronome = setInterval(function () {refreshCounter();}, 60000 / document.getElementById("tempo").value);
         }
     }
 }
@@ -90,19 +81,14 @@ function playMetronome() {
     if (document.getElementById("playButton").innerHTML === "Play") {
         refreshCounter();
         document.getElementById("playButton").innerHTML = "Pause";
-
-        metronome = setInterval(function () {
-            refreshCounter();
-        }, 60000 / document.getElementById("tempo").value);
-
+        metronome = setInterval(function () { refreshCounter(); }, 60000 / document.getElementById("tempo").value);
     } else if (document.getElementById("playButton").innerHTML === "Pause") {
         clearInterval(metronome);
+        for (let i = 0; i < beatCounterElements.length; i++) {
+            beatCounterElements[i].id = "";
+        }
         document.getElementById("playButton").innerHTML = "Play";
         beatCounter = 0;
-        for (let i = 0; i < beatCounterElements.length; i++) {
-            beatCounterElements[i].style.backgroundColor = randomElementColor;
-        }
-
     }
 }
 
@@ -133,12 +119,6 @@ function saveTempo() {
     document.getElementById("savedTempos").innerHTML += `<button style="background-color: ${randomElementColor};" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
     localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
     refreshHover();
-}
-
-function refreshHover() {
-    randomBackgroundColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation}%, ${backgroundSaturation}%)`;
-    randomElementColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 10}%, ${backgroundSaturation + 10}%)`;
-    randomHoverColor = `hsl(${randomColor.randomHue}, ${backgroundSaturation + 20}%, ${backgroundSaturation + 20}%)`;
 }
 
 onkeydown = function (event) {
@@ -172,7 +152,7 @@ function toggleChallenge() {
         }
         clearInterval(randomGaps);
     }
-    
+
 }
 
 function scrollDrones(right) {
@@ -197,12 +177,12 @@ function scrollDrones(right) {
     }
 }
 
-function toggleAccent() { 
+function toggleAccent() {
     accent = !accent;
     if (accent) {
         document.getElementById(`enableAccent`).innerHTML = `Off`;
     } else {
         document.getElementById(`enableAccent`).innerHTML = `>`;
     }
-    
+
 }

@@ -1,6 +1,5 @@
 * {
     text-align: center;
-    color: Black !important;
 }
 
 div {
@@ -54,4 +53,9 @@ p {
 #droneTable {
     display: grid;
     grid: auto / calc(100% / 3) calc(100% / 3) calc(100% / 3);
+}
+
+#activeBeat {
+    color: var(--dark-1);
+    background-color: var(--light-1);
 }
