@@ -55,7 +55,6 @@ function refreshCounter() {
     }
 
     beatCounterElements[beatCounter].id = "activeBeat";
-    document.getElementById("activeBeat").backgroundColor = `hsl(${colorPalletes.savedColor}, 45%, 90%)`;
 
     beatCounter++;
 
@@ -67,27 +66,26 @@ function refreshCounter() {
 oninput = function (event) {
     if (document.getElementById("beats").value !== "" && document.getElementById("tempo").value !== "") {
         changeBeatCounter();
-        if (document.getElementById("playButton").innerHTML === "Pause") {
+        if (document.getElementById("playButton").innerHTML === "⏸") {
             clearInterval(metronome);
             beatCounter = 0;
             refreshCounter();
-
             metronome = setInterval(function () {refreshCounter();}, 60000 / document.getElementById("tempo").value);
         }
     }
 }
 
 function playMetronome() {
-    if (document.getElementById("playButton").innerHTML === "Play") {
+    if (document.getElementById("playButton").innerHTML === "⏵") {
         refreshCounter();
-        document.getElementById("playButton").innerHTML = "Pause";
+        document.getElementById("playButton").innerHTML = "⏸";
         metronome = setInterval(function () { refreshCounter(); }, 60000 / document.getElementById("tempo").value);
-    } else if (document.getElementById("playButton").innerHTML === "Pause") {
+    } else if (document.getElementById("playButton").innerHTML === "⏸") {
         clearInterval(metronome);
         for (let i = 0; i < beatCounterElements.length; i++) {
             beatCounterElements[i].id = "";
         }
-        document.getElementById("playButton").innerHTML = "Play";
+        document.getElementById("playButton").innerHTML = "⏵";
         beatCounter = 0;
     }
 }
@@ -95,7 +93,7 @@ function playMetronome() {
 function playDrone(note) {
     document.getElementById(note).play();
     document.getElementById("stop").style.display = "flex";
-    document.getElementById("challengeButton").innerHTML = "Challenge";
+    document.getElementById("challengeButton").innerHTML = "!";
     clearInterval(randomGaps);
 }
 
@@ -103,7 +101,6 @@ function stop() {
     for (let i = 0; i < audioElements.length; i++) {
         audioElements[i].pause();
         audioElements[i].currentTime = 0;
-        drones[i].style.backgroundColor = randomElementColor;
     }
     document.getElementById("stop").style.display = "none";
 }
@@ -116,7 +113,7 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(document.getElementById("tempo").value);
-    document.getElementById("savedTempos").innerHTML += `<button style="background-color: ${randomElementColor};" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = 'Play'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
+    document.getElementById("savedTempos").innerHTML += `<button style="background-color: ${randomElementColor};" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = '⏵'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
     localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
     refreshHover();
 }
@@ -131,7 +128,7 @@ onkeydown = function (event) {
 function toggleChallenge() {
     let audioElements = document.getElementsByTagName("audio");
     let randomMultiplier = Math.ceil(Math.random() * document.getElementById("beats").value * 2);
-    if (document.getElementById("challengeButton").innerHTML === "Challenge") {
+    if (document.getElementById("challengeButton").innerHTML === "!") {
         document.getElementById("challengeButton").innerHTML = "Exit";
         randomGaps = setInterval(function () {
             if (audioElements[0].muted === false && audioElements[1].muted === false) {
@@ -146,7 +143,7 @@ function toggleChallenge() {
             randomMultiplier = Math.ceil(Math.random() * document.getElementById("beats").value * 2);
         }, 60000 / document.getElementById("tempo").value * randomMultiplier);
     } else {
-        document.getElementById("challengeButton").innerHTML = "Challenge";
+        document.getElementById("challengeButton").innerHTML = "!";
         for (let i = 0; i < 2; i++) {
             audioElements[i].muted = false;
         }
