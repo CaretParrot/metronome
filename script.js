@@ -73,6 +73,8 @@ oninput = function (event) {
             metronome = setInterval(function () {refreshCounter();}, 60000 / document.getElementById("tempo").value);
         }
     }
+
+    document.getElementById("tempoLabel").innerHTML = document.getElementById("tempo").value;
 }
 
 function playMetronome() {
@@ -113,15 +115,14 @@ function deleteTempos() {
 
 function saveTempo() {
     savedTempos.push(document.getElementById("tempo").value);
-    document.getElementById("savedTempos").innerHTML += `<button style="background-color: ${randomElementColor};" onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = '⏵'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
+    document.getElementById("savedTempos").innerHTML += `<button onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = '⏵'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
     localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
     refreshHover();
 }
 
 onkeydown = function (event) {
     if (event.key === " ") {
-        randomColor.paint(backgroundSaturation, backgroundSaturation + 10);
-        refreshHover();
+        colorPalletes.paint();
     }
 }
 

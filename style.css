@@ -1,29 +1,23 @@
 * {
-    text-align: center;
+    text-align: center;;
+}
+
+body * {
+    font-size: clamp(0.5rem, 2rem, 2rem);
 }
 
 div {
-    margin: 0;
-    padding: 0;
-    background-color: transparent !important;
+    background-color: transparent;
 }
 
 button,
 input,
 p {
-    font-size: 2rem;
     align-items: center;
     justify-content: center;
-    height: calc(100% - 2rem);
-}
-
-#savedTempos {
-    margin: 0;
 }
 
 #homeWrapper {
-    margin: 0;
-    padding: 0;
     background-color: transparent;
     display: grid;
     grid: auto / 100%;
@@ -31,23 +25,8 @@ p {
     height: 100%;
 }
 
-#droneTable {
-    flex-flow: row wrap;
-}
-
-#flash {
-    display: none;
-    margin: 1rem;
-    padding: 1rem;
-}
-
 .beats {
     transition: none;
-}
-
-#droneTable {
-    display: grid;
-    grid: auto / calc(100% / 3) calc(100% / 3) calc(100% / 3);
 }
 
 #activeBeat {
@@ -55,7 +34,8 @@ p {
     background-color: light-dark(var(--dark-1), var(--light-1));
 }
 
-::selection, ::-moz-selection {
-    color: light-dark(var(--light-1), var(--dark-1));
-    background-color: light-dark(var(--dark-1), var(--light-1));
+div {
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
