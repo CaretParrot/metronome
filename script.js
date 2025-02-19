@@ -73,8 +73,6 @@ oninput = function (event) {
             metronome = setInterval(function () {refreshCounter();}, 60000 / document.getElementById("tempo").value);
         }
     }
-
-    document.getElementById("tempoLabel").innerHTML = document.getElementById("tempo").value;
 }
 
 function playMetronome() {
