@@ -1,22 +1,20 @@
-let beatCounterElements = document.getElementById("beatCounterTable").children;
+id.setupTree();
+
+let beatCounterElements = id.beatCounterTable.children;
 let metronome;
 let beatCounter = 0;
-let savedTempos = [];
 let audioElements = document.getElementsByClassName("drone");
-let inputs = document.getElementsByTagName("input");
 let drones = document.getElementsByClassName("droneButton");
 let randomGaps;
 let droneNumber = 0;
 let accent = false;
+const min = 60000;
 
-document.getElementById("savedTempos").innerHTML = localStorage.getItem("temposSaved");
-let buttons = document.getElementsByTagName("button");
+id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
 colorPalletes.paint();
 
 changeBeatCounter();
-
-document.getElementById("stop").style.display = "none";
 
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
@@ -33,21 +31,21 @@ function changeBeatCounter() {
         beatCounterElements[i].style.display = "none";
     }
 
-    for (let i = 0; i < +document.getElementById("beats").value; i++) {
+    for (let i = 0; i < +id.beats.value; i++) {
         beatCounterElements[i].style.display = "flex";
     }
 }
 
 function refreshCounter() {
-    document.getElementById("accentBeat").pause();
-    document.getElementById("accentBeat").currentTime = 0;
-    document.getElementById("normalBeat").pause();
-    document.getElementById("normalBeat").currentTime = 0;
+    id.accentBeat.pause();
+    id.accentBeat.currentTime = 0;
+    id.normalBeat.pause();
+    id.normalBeat.currentTime = 0;
 
     if (beatCounter === 0 && accent) {
-        document.getElementById("accentBeat").play();
+        id.accentBeat.play();
     } else {
-        document.getElementById("normalBeat").play();
+        id.normalBeat.play();
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
@@ -58,42 +56,41 @@ function refreshCounter() {
 
     beatCounter++;
 
-    if (beatCounter > document.getElementById("beats").value - 1) {
+    if (beatCounter > +id.beats.value - 1) {
         beatCounter = 0;
     }
 }
 
 oninput = function (event) {
-    if (document.getElementById("beats").value !== "" && document.getElementById("tempo").value !== "") {
+    if (id.beats.value !== "" && id.tempo.value !== "") {
         changeBeatCounter();
-        if (document.getElementById("playButton").innerHTML === "⏸") {
+        if (id.playButton.innerHTML === "⏸") {
             clearInterval(metronome);
             beatCounter = 0;
             refreshCounter();
-            metronome = setInterval(function () {refreshCounter();}, 60000 / document.getElementById("tempo").value);
+            metronome = setInterval(function () { refreshCounter(); }, min / id.tempo.value);
         }
     }
 }
 
 function playMetronome() {
-    if (document.getElementById("playButton").innerHTML === "⏵") {
+    if (id.playButton.innerHTML === "⏵") {
         refreshCounter();
-        document.getElementById("playButton").innerHTML = "⏸";
-        metronome = setInterval(function () { refreshCounter(); }, 60000 / document.getElementById("tempo").value);
-    } else if (document.getElementById("playButton").innerHTML === "⏸") {
+        id.playButton.innerHTML = "⏸";
+        metronome = setInterval(function () { refreshCounter(); }, min / id.tempo.value);
+    } else if (id.playButton.innerHTML === "⏸") {
         clearInterval(metronome);
         for (let i = 0; i < beatCounterElements.length; i++) {
             beatCounterElements[i].id = "";
         }
-        document.getElementById("playButton").innerHTML = "⏵";
+        id.playButton.innerHTML = "⏵";
         beatCounter = 0;
     }
 }
 
 function playDrone(note) {
     document.getElementById(note).play();
-    document.getElementById("stop").style.display = "flex";
-    document.getElementById("challengeButton").innerHTML = "!";
+    id.stop.style.display = "flex";
     clearInterval(randomGaps);
 }
 
@@ -102,20 +99,26 @@ function stop() {
         audioElements[i].pause();
         audioElements[i].currentTime = 0;
     }
-    document.getElementById("stop").style.display = "none";
+    id.stop.style.display = "none";
 }
 
 function deleteTempos() {
-    savedTempos = [];
-    document.getElementById("savedTempos").innerHTML = "";
-    localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
+    id.savedTempos.innerHTML = "";
+    localStorage.setItem("temposSaved", id.savedTempos.innerHTML);
 }
 
 function saveTempo() {
-    savedTempos.push(document.getElementById("tempo").value);
-    document.getElementById("savedTempos").innerHTML += `<button onclick="document.getElementById('tempo').value = ${document.getElementById("tempo").value}; document.getElementById('playButton').innerHTML = '⏵'; clearInterval(metronome); beatCounter = 0; playMetronome();">${document.getElementById("tempo").value}</button>`;
-    localStorage.setItem("temposSaved", document.getElementById("savedTempos").innerHTML);
-    refreshHover();
+    let newButton = document.createElement("button");
+    newButton.onclick = function () {
+        document.getElementById('tempo').value = id.tempo.value;
+        document.getElementById('playButton').innerHTML = '⏵';
+        clearInterval(metronome);
+        beatCounter = 0;
+        playMetronome();
+    }
+    newButton.innerHTML = id.tempo.value;
+    id.savedTempos.appendChild(newButton);
+    localStorage.setItem("temposSaved", id.savedTempos.innerHTML);
 }
 
 onkeydown = function (event) {
@@ -125,26 +128,26 @@ onkeydown = function (event) {
 }
 
 function toggleChallenge() {
-    let audioElements = document.getElementsByTagName("audio");
-    let randomMultiplier = Math.ceil(Math.random() * document.getElementById("beats").value * 2);
-    if (document.getElementById("challengeButton").innerHTML === "!") {
-        document.getElementById("challengeButton").innerHTML = "Exit";
+    let droneSounds = document.getElementsByTagName("audio");
+    let randomMultiplier = Math.ceil(Math.random() * id.beats.value * 2);
+    if (id.challengeButton.innerHTML === "!") {
+        id.challengeButton.innerHTML = "Exit";
         randomGaps = setInterval(function () {
-            if (audioElements[0].muted === false && audioElements[1].muted === false) {
+            if (dronSounds[0].muted === false && dronSounds[1].muted === false) {
                 for (let i = 0; i < 2; i++) {
-                    audioElements[i].muted = true;
+                    dronSounds[i].muted = true;
                 }
             } else {
                 for (let i = 0; i < 2; i++) {
-                    audioElements[i].muted = false;
+                    dronSounds[i].muted = false;
                 }
             }
-            randomMultiplier = Math.ceil(Math.random() * document.getElementById("beats").value * 2);
-        }, 60000 / document.getElementById("tempo").value * randomMultiplier);
+            randomMultiplier = Math.ceil(Math.random() * id.beats.value * 2);
+        }, min / id.tempo.value * randomMultiplier);
     } else {
-        document.getElementById("challengeButton").innerHTML = "!";
+        id.challengeButton.innerHTML = "!";
         for (let i = 0; i < 2; i++) {
-            audioElements[i].muted = false;
+            dronSounds[i].muted = false;
         }
         clearInterval(randomGaps);
     }
@@ -162,23 +165,22 @@ function scrollDrones(right) {
             droneNumber = 0;
         }
 
-        drones[droneNumber].style.display = "flex";
+        
     } else {
         droneNumber--;
         if (droneNumber < 0) {
             droneNumber = 11;
         }
-
-        drones[droneNumber].style.display = "flex";
     }
+
+    drones[droneNumber].style.display = "flex";
 }
 
 function toggleAccent() {
     accent = !accent;
     if (accent) {
-        document.getElementById(`enableAccent`).innerHTML = `Off`;
+        id.enableAccent.innerHTML = `Off`;
     } else {
-        document.getElementById(`enableAccent`).innerHTML = `>`;
+        id.enableAccent.innerHTML = `>`;
     }
-
 }

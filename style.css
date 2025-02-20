@@ -1,28 +1,22 @@
 * {
-    text-align: center;;
+    overflow: auto;
 }
 
 body * {
-    font-size: clamp(0.5rem, 2rem, 2rem);
-}
-
-div {
-    background-color: transparent;
+    font-size: 3rem;
 }
 
 button,
 input,
 p {
+    text-align: center;
     align-items: center;
     justify-content: center;
 }
 
 #homeWrapper {
-    background-color: transparent;
     display: grid;
     grid: auto / 100%;
-    width: 100%;
-    height: 100%;
 }
 
 .beats {
@@ -35,7 +29,12 @@ p {
 }
 
 div {
+    background-color: transparent;
     display: flex;
     width: 100%;
     height: 100%;
+}
+
+#stop {
+    display: none;
 }
