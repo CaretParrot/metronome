@@ -1,10 +1,5 @@
 body * {
-    font-size: 3rem;
-}
-
-#homeWrapper {
-    display: grid;
-    grid: auto / 100%;
+    font-size: 2rem;
 }
 
 .beats {
@@ -16,14 +11,15 @@ body * {
     background-color: light-dark(var(--dark-1), var(--light-1));
 }
 
-div {
-    display: flex;
-}
-
 #stop {
     display: none;
 }
 
-#toolbar * {
-    font-size: 2rem;
+#controls {
+    grid: auto / 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+div {
+    display: flex;
+    flex-flow: row wrap;
 }
