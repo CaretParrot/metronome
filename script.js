@@ -1,5 +1,11 @@
 id.setupTree();
 
+const min = 60000;
+const playIcon = `<span class="material-symbols-outlined">play_arrow</span>`;
+const stopIcon = `<span class="material-symbols-outlined">stop</span>`;
+const swordsIcon = `<span class="material-symbols-outlined">swords</span>`;
+const cancelIcon = `<span class="material-symbols-outlined">cancel</span>`;
+
 let beatCounterElements = id.beatCounterTable.children;
 let metronome;
 let beatCounter = 0;
@@ -8,17 +14,11 @@ let drones = document.getElementsByClassName("droneButton");
 let randomGaps;
 let droneNumber = 0;
 let accent = false;
-const min = 60000;
-const playIcon = `<span class="material-symbols-outlined">
-                    play_arrow</span>`;
-const stopIcon = `<span class="material-symbols-outlined">stop</span>`;
-const swordsIcon = `<span class="material-symbols-outlined">swords</span>`;
-const cancelIcon = `<span class="material-symbols-outlined">cancel</span>`;
+let oscillatorOn = false;
 
 id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
 colorPalletes.paint();
-
 changeBeatCounter();
 
 for (let i = 0; i < audioElements.length; i++) {
@@ -188,16 +188,4 @@ function toggleAccent() {
     } else {
         id.enableAccent.innerHTML = `>`;
     }
-}
-
-function generateTone(frequency) {
-    let context = new AudioContext();
-    let oscillator = context.createOscillator();
-    const gainNode = context.createGain();
-    gainNode.gain.value = 0.0000001;
-    oscillator.type = "sine";
-    oscillator.frequency.value = frequency;
-    oscillator.connect(context.destination);
-    oscillator.connect(gainNode);
-    oscillator.start();
 }

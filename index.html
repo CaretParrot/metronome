@@ -17,14 +17,14 @@
     <body>
         <div id="homeWrapper">
             <div id="controls">
-                <button id="playButton" onclick="playMetronome()"><span class="material-symbols-outlined">
-                        play_arrow</span></button>
+                <button id="playButton" onclick="playMetronome()"><span
+                        class="material-symbols-outlined">play_arrow</span></button>
                 <input id="tempo" type="number" step="1" min="30" max="240" value="60" />
                 <input id="beats" type="number" min="1" max="12" value="4" />
                 <button id="enableAccent" onclick="toggleAccent()">></button>
                 <button id="stop" onclick="stop()">Stop</button>
-                <button id="challengeButton" onclick="toggleChallenge()"><span class="material-symbols-outlined">
-                        swords</span></button>
+                <button id="challengeButton" onclick="toggleChallenge()"><span
+                        class="material-symbols-outlined">swords</span></button>
             </div>
             <div id="beatCounterTable">
                 <p class="beats">1</p>
@@ -61,11 +61,11 @@
                         delete</span></button>
             </div>
             <div id="tuner">
-                <button class="tunerButton" onclick="generateTone(27.5 * (2) ** (55/12))">E5</button>
-                <button class="tunerButton">A4</button>
-                <button class="tunerButton">D4</button>
-                <button class="tunerButton">G3</button>
-                <button class="tunerButton">C3</button>
+                <button class="tunerButton" onclick="playDrone('E5')">E5</button>
+                <button class="tunerButton" onclick="playDrone('A4')">A4</button>
+                <button class="tunerButton" onclick="playDrone('D4')">D4</button>
+                <button class="tunerButton" onclick="playDrone('G3')">G3</button>
+                <button class="tunerButton" onclick="playDrone('C3')">C3</button>
             </div>
             <div id="savedTempos"></div>
         </div>
@@ -113,5 +113,19 @@
     <audio id="Ab" class="drone" loop>
         <source src="./assets/Ab.ogg" />
     </audio>
-
+    <audio id="E5" class="drone" loop>
+        <source src="./assets/E5.ogg" />
+    </audio>
+    <audio id="A4" class="drone" loop>
+        <source src="./assets/A4.ogg" />
+    </audio>
+    <audio id="D4" class="drone" loop>
+        <source src="./assets/D4.ogg" />
+    </audio>
+    <audio id="G3" class="drone" loop>
+        <source src="./assets/G3.ogg" />
+    </audio>
+    <audio id="C3" class="drone" loop>
+        <source src="./assets/C3.ogg" />
+    </audio>
 </html>
