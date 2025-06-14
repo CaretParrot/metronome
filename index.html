@@ -9,8 +9,7 @@
         <link rel="icon" type="image/x-icon" href="https://caretparrot.github.io/my-libraries/Profile%20Picture.png" />
         <link rel="manifest" href="./manifest.json" />
         <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <script defer src="https://caretparrot.github.io/papaya-salad/script.js"></script>
         <script defer src="./script.js"></script>
     </head>
@@ -19,13 +18,13 @@
         <div id="homeWrapper">
             <div id="controls">
                 <button id="playButton" onclick="playMetronome()"><span class="material-symbols-outlined">
-                    play_arrow</span></button>
+                        play_arrow</span></button>
                 <input id="tempo" type="number" step="1" min="30" max="240" value="60" />
                 <input id="beats" type="number" min="1" max="12" value="4" />
                 <button id="enableAccent" onclick="toggleAccent()">></button>
                 <button id="stop" onclick="stop()">Stop</button>
                 <button id="challengeButton" onclick="toggleChallenge()"><span class="material-symbols-outlined">
-                    swords</span></button>
+                        swords</span></button>
             </div>
             <div id="beatCounterTable">
                 <p class="beats">1</p>
@@ -56,14 +55,19 @@
                 <button class="droneButton" onclick="playDrone('Bb');">A♯/B♭</button>
                 <button class="droneButton" onclick="playDrone('B');">B</button>
                 <button onclick="scrollDrones(true)">→</button>
-            </div>
-            <div id="toolbar">
                 <button onclick="saveTempo()"><span class="material-symbols-outlined">
                         save</span></button>
                 <button onclick="deleteTempos()"><span class="material-symbols-outlined">
                         delete</span></button>
-                <div id="savedTempos"></div>
             </div>
+            <div id="tuner">
+                <button class="tunerButton" onclick="generateTone(27.5 * (2) ** (55/12))">E5</button>
+                <button class="tunerButton">A4</button>
+                <button class="tunerButton">D4</button>
+                <button class="tunerButton">G3</button>
+                <button class="tunerButton">C3</button>
+            </div>
+            <div id="savedTempos"></div>
         </div>
     </body>
 

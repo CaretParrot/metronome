@@ -1,5 +1,5 @@
 body * {
-    font-size: 2rem;
+    font-size: calc(var(--base-unit) * 2);
 }
 
 .beats {
@@ -15,17 +15,16 @@ body * {
     display: none;
 }
 
-#controls {
-    grid: auto / 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
 div {
     display: flex;
     flex-flow: row wrap;
+    justify-content: stretch;
+    align-items: stretch;
+    align-content: stretch;
 }
 
 span {
-    padding: 0;
-    font-size: 1rem;
+    padding: auto;
+    font-size: calc(var(--base-unit) * 2) !important;
     background-color: transparent;
 }

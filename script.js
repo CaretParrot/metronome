@@ -138,7 +138,7 @@ function toggleChallenge() {
     if (id.challengeButton.innerHTML === swordsIcon) {
         id.challengeButton.innerHTML = cancelIcon;
         randomGaps = setInterval(function () {
-            if (dronSounds[0].muted === false && dronSounds[1].muted === false) {
+            if (droneSounds[0].muted === false && droneSounds[1].muted === false) {
                 for (let i = 0; i < 2; i++) {
                     droneSounds[i].muted = true;
                 }
@@ -188,4 +188,16 @@ function toggleAccent() {
     } else {
         id.enableAccent.innerHTML = `>`;
     }
+}
+
+function generateTone(frequency) {
+    let context = new AudioContext();
+    let oscillator = context.createOscillator();
+    const gainNode = context.createGain();
+    gainNode.gain.value = 0.0000001;
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+    oscillator.connect(context.destination);
+    oscillator.connect(gainNode);
+    oscillator.start();
 }
