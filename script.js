@@ -9,6 +9,11 @@ let randomGaps;
 let droneNumber = 0;
 let accent = false;
 const min = 60000;
+const playIcon = `<span class="material-symbols-outlined">
+                    play_arrow</span>`;
+const stopIcon = `<span class="material-symbols-outlined">stop</span>`;
+const swordsIcon = `<span class="material-symbols-outlined">swords</span>`;
+const cancelIcon = `<span class="material-symbols-outlined">cancel</span>`;
 
 id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
@@ -64,7 +69,7 @@ function refreshCounter() {
 oninput = function (event) {
     if (id.beats.value !== "" && id.tempo.value !== "") {
         changeBeatCounter();
-        if (id.playButton.innerHTML === "⏸") {
+        if (id.playButton.innerHTML === stopIcon) {
             clearInterval(metronome);
             beatCounter = 0;
             refreshCounter();
@@ -74,16 +79,16 @@ oninput = function (event) {
 }
 
 function playMetronome() {
-    if (id.playButton.innerHTML === "⏵") {
+    if (id.playButton.innerHTML === playIcon) {
         refreshCounter();
-        id.playButton.innerHTML = "⏸";
+        id.playButton.innerHTML = stopIcon;
         metronome = setInterval(function () { refreshCounter(); }, min / id.tempo.value);
-    } else if (id.playButton.innerHTML === "⏸") {
+    } else if (id.playButton.innerHTML === stopIcon) {
         clearInterval(metronome);
         for (let i = 0; i < beatCounterElements.length; i++) {
             beatCounterElements[i].id = "";
         }
-        id.playButton.innerHTML = "⏵";
+        id.playButton.innerHTML = playIcon;
         beatCounter = 0;
     }
 }
@@ -111,7 +116,7 @@ function saveTempo() {
     let newButton = document.createElement("button");
     newButton.onclick = function () {
         document.getElementById('tempo').value = id.tempo.value;
-        document.getElementById('playButton').innerHTML = '⏵';
+        document.getElementById('playButton').innerHTML = playIcon;
         clearInterval(metronome);
         beatCounter = 0;
         playMetronome();
@@ -130,24 +135,24 @@ onkeydown = function (event) {
 function toggleChallenge() {
     let droneSounds = document.getElementsByTagName("audio");
     let randomMultiplier = Math.ceil(Math.random() * id.beats.value * 2);
-    if (id.challengeButton.innerHTML === "!") {
-        id.challengeButton.innerHTML = "Exit";
+    if (id.challengeButton.innerHTML === swordsIcon) {
+        id.challengeButton.innerHTML = cancelIcon;
         randomGaps = setInterval(function () {
             if (dronSounds[0].muted === false && dronSounds[1].muted === false) {
                 for (let i = 0; i < 2; i++) {
-                    dronSounds[i].muted = true;
+                    droneSounds[i].muted = true;
                 }
             } else {
                 for (let i = 0; i < 2; i++) {
-                    dronSounds[i].muted = false;
+                    droneSounds[i].muted = false;
                 }
             }
             randomMultiplier = Math.ceil(Math.random() * id.beats.value * 2);
         }, min / id.tempo.value * randomMultiplier);
     } else {
-        id.challengeButton.innerHTML = "!";
+        id.challengeButton.innerHTML = swordsIcon;
         for (let i = 0; i < 2; i++) {
-            dronSounds[i].muted = false;
+            droneSounds[i].muted = false;
         }
         clearInterval(randomGaps);
     }
@@ -165,7 +170,7 @@ function scrollDrones(right) {
             droneNumber = 0;
         }
 
-        
+
     } else {
         droneNumber--;
         if (droneNumber < 0) {
@@ -179,7 +184,7 @@ function scrollDrones(right) {
 function toggleAccent() {
     accent = !accent;
     if (accent) {
-        id.enableAccent.innerHTML = `Off`;
+        id.enableAccent.innerHTML = cancelIcon;
     } else {
         id.enableAccent.innerHTML = `>`;
     }

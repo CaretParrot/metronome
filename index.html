@@ -9,7 +9,8 @@
         <link rel="icon" type="image/x-icon" href="https://caretparrot.github.io/my-libraries/Profile%20Picture.png" />
         <link rel="manifest" href="./manifest.json" />
         <link rel="stylesheet" href="./style.css">
-        <title>Metronome</title>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <script defer src="https://caretparrot.github.io/papaya-salad/script.js"></script>
         <script defer src="./script.js"></script>
     </head>
@@ -17,12 +18,14 @@
     <body>
         <div id="homeWrapper">
             <div id="controls">
-                <button id="playButton" onclick="playMetronome()">&#x23F5;</button>
+                <button id="playButton" onclick="playMetronome()"><span class="material-symbols-outlined">
+                    play_arrow</span></button>
                 <input id="tempo" type="number" step="1" min="30" max="240" value="60" />
                 <input id="beats" type="number" min="1" max="12" value="4" />
                 <button id="enableAccent" onclick="toggleAccent()">></button>
                 <button id="stop" onclick="stop()">Stop</button>
-                <button id="challengeButton" onclick="toggleChallenge()">!</button>
+                <button id="challengeButton" onclick="toggleChallenge()"><span class="material-symbols-outlined">
+                    swords</span></button>
             </div>
             <div id="beatCounterTable">
                 <p class="beats">1</p>
@@ -55,8 +58,10 @@
                 <button onclick="scrollDrones(true)">→</button>
             </div>
             <div id="toolbar">
-                <button onclick="saveTempo()">Save Tempo</button>
-                <button onclick="deleteTempos()">Delete All</button>
+                <button onclick="saveTempo()"><span class="material-symbols-outlined">
+                        save</span></button>
+                <button onclick="deleteTempos()"><span class="material-symbols-outlined">
+                        delete</span></button>
                 <div id="savedTempos"></div>
             </div>
         </div>
