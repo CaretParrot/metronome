@@ -61,11 +61,11 @@
                         delete</span></button>
             </div>
             <div id="tuner">
-                <button class="tunerButton" onclick="playDrone('E5')">E5</button>
-                <button class="tunerButton" onclick="playDrone('A4')">A4</button>
-                <button class="tunerButton" onclick="playDrone('D4')">D4</button>
-                <button class="tunerButton" onclick="playDrone('G3')">G3</button>
-                <button class="tunerButton" onclick="playDrone('C3')">C3</button>
+                <button class="tunerButton" onclick="tuner(660)">E5</button>
+                <button class="tunerButton" onclick="tuner(440)">A4</button>
+                <button class="tunerButton" onclick="tuner(440 * (2) ** (-7/12))">D4</button>
+                <button class="tunerButton" onclick="tuner(440 * (2) ** (-14/12))">G3</button>
+                <button class="tunerButton" onclick="tuner(440 * (2) ** (-21/12))">C3</button>
             </div>
             <div id="savedTempos"></div>
         </div>
@@ -112,20 +112,5 @@
     </audio>
     <audio id="Ab" class="drone" loop>
         <source src="./assets/Ab.ogg" />
-    </audio>
-    <audio id="E5" class="drone" loop>
-        <source src="./assets/E5.ogg" />
-    </audio>
-    <audio id="A4" class="drone" loop>
-        <source src="./assets/A4.ogg" />
-    </audio>
-    <audio id="D4" class="drone" loop>
-        <source src="./assets/D4.ogg" />
-    </audio>
-    <audio id="G3" class="drone" loop>
-        <source src="./assets/G3.ogg" />
-    </audio>
-    <audio id="C3" class="drone" loop>
-        <source src="./assets/C3.ogg" />
     </audio>
 </html>

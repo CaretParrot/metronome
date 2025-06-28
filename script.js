@@ -5,6 +5,10 @@ const playIcon = `<span class="material-symbols-outlined">play_arrow</span>`;
 const stopIcon = `<span class="material-symbols-outlined">stop</span>`;
 const swordsIcon = `<span class="material-symbols-outlined">swords</span>`;
 const cancelIcon = `<span class="material-symbols-outlined">cancel</span>`;
+const audio = new AudioContext();
+const gainNode = audio.createGain();
+const osc = audio.createOscillator();
+osc.start();
 
 let beatCounterElements = id.beatCounterTable.children;
 let metronome;
@@ -104,6 +108,7 @@ function stop() {
         audioElements[i].pause();
         audioElements[i].currentTime = 0;
     }
+    osc.disconnect();
     id.stop.style.display = "none";
 }
 
@@ -188,4 +193,13 @@ function toggleAccent() {
     } else {
         id.enableAccent.innerHTML = `>`;
     }
+}
+
+function tuner(frequency) {
+    osc.connect(gainNode);
+    id.stop.style.display = "flex";
+
+    osc.frequency.value = frequency;
+    gainNode.gain.value = 0.1;
+    gainNode.connect(audio.destination);
 }
