@@ -8,7 +8,6 @@ const cancelIcon = `<span class="material-symbols-outlined">cancel</span>`;
 const audio = new AudioContext();
 const gainNode = audio.createGain();
 const osc = audio.createOscillator();
-osc.start();
 
 let beatCounterElements = id.beatCounterTable.children;
 let metronome;
@@ -20,10 +19,17 @@ let droneNumber = 0;
 let accent = false;
 let oscillatorOn = false;
 
-id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
 
-colorPalletes.paint();
-changeBeatCounter();
+window.onload = function () {
+    osc.start();
+    id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
+    colorPalletes.paint();
+    changeBeatCounter();
+}
+
+onclick = function (event) {
+    audio.resume();
+}
 
 for (let i = 0; i < audioElements.length; i++) {
     audioElements[i].volume = 0.15;
