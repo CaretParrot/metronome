@@ -1,5 +1,9 @@
 body * {
-    font-size: calc(var(--base-unit) * 1.5);
+    font-size: calc(var(--base-unit) * 2) !important;
+}
+
+body {
+    height: 100%;
 }
 
 .beats {
@@ -15,9 +19,13 @@ body * {
     display: none;
 }
 
+#droneTable, #tuner {
+    display: grid;
+    grid: auto / 1fr 1fr 1fr 1fr 1fr;
+}
+
 div {
     display: flex;
-    flex-flow: row wrap;
     width: 100%;
     justify-content: stretch;
     align-items: stretch;
@@ -26,6 +34,11 @@ div {
 
 span {
     padding: auto;
-    font-size: calc(var(--base-unit) * 1.5) !important;
     background-color: transparent;
+}
+
+@media (pointer: coarse) {
+    body * {
+        font-size: calc(var(--base-unit) * 1.5) !important;
+    }
 }
