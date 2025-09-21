@@ -20,11 +20,19 @@ let accent = false;
 let oscillatorOn = false;
 
 
-window.onload = function () {
+window.onload = async function () {
     osc.start();
     id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
     colorPalletes.paint();
     changeBeatCounter();
+
+    let wakeLock = null;
+
+    try {
+        wakeLock = await navigator.wakeLock.request("screen");
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 onclick = function (event) {
@@ -162,12 +170,11 @@ function toggleChallenge() {
         }, min / id.tempo.value * randomMultiplier);
     } else {
         id.challengeButton.innerHTML = swordsIcon;
+        clearInterval(randomGaps);
         for (let i = 0; i < 2; i++) {
             droneSounds[i].muted = false;
         }
-        clearInterval(randomGaps);
     }
-
 }
 
 function scrollDrones(right) {

@@ -37,7 +37,11 @@ span {
     background-color: transparent;
 }
 
-@media (pointer: coarse) {
+#tuner {
+    display: none;
+}
+
+@media (orientation: portrait) {
     body * {
         font-size: calc(var(--base-unit) * 1.5) !important;
     }
