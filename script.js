@@ -23,7 +23,6 @@ let oscillatorOn = false;
 window.onload = async function () {
     osc.start();
     id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
-    colorPalletes.paint();
     changeBeatCounter();
 
     let wakeLock = null;
@@ -33,21 +32,21 @@ window.onload = async function () {
     } catch (err) {
         console.log(err);
     }
-}
 
-onclick = function (event) {
-    audio.resume();
-}
+    for (let i = 0; i < audioElements.length; i++) {
+        audioElements[i].volume = 0.15;
+    }
 
-for (let i = 0; i < audioElements.length; i++) {
-    audioElements[i].volume = 0.15;
-}
+    for (let i = 0; i < drones.length; i++) {
+        drones[i].style.display = "none";
+    }
 
-for (let i = 0; i < drones.length; i++) {
-    drones[i].style.display = "none";
-}
+    drones[droneNumber].style.display = "flex";
 
-drones[droneNumber].style.display = "flex";
+    onclick = function (event) {
+        audio.resume();
+    }
+}
 
 function changeBeatCounter() {
     for (let i = 0; i < beatCounterElements.length; i++) {
@@ -97,7 +96,7 @@ oninput = function (event) {
 }
 
 function playMetronome() {
-    if (id.playButton.innerHTML === playIcon) {
+    if (id.playButton.innerHTML === playIcon && id.beats.value !== "" && id.tempo.value !== "") {
         refreshCounter();
         id.playButton.innerHTML = stopIcon;
         metronome = setInterval(function () { refreshCounter(); }, min / id.tempo.value);
@@ -134,8 +133,8 @@ function deleteTempos() {
 function saveTempo() {
     let newButton = document.createElement("button");
     newButton.onclick = function () {
-        document.getElementById('tempo').value = id.tempo.value;
-        document.getElementById('playButton').innerHTML = playIcon;
+        document.getElementById("tempo").value = this.innerHTML;
+        document.getElementById("playButton").innerHTML = playIcon;
         clearInterval(metronome);
         beatCounter = 0;
         playMetronome();
@@ -143,12 +142,6 @@ function saveTempo() {
     newButton.innerHTML = id.tempo.value;
     id.savedTempos.appendChild(newButton);
     localStorage.setItem("temposSaved", id.savedTempos.innerHTML);
-}
-
-onkeydown = function (event) {
-    if (event.key === " ") {
-        colorPalletes.paint();
-    }
 }
 
 function toggleChallenge() {
