@@ -1,5 +1,3 @@
-id.setupTree();
-
 const min = 60000;
 const playIcon = `<span class="material-symbols-outlined">play_arrow</span>`;
 const stopIcon = `<span class="material-symbols-outlined">stop</span>`;
@@ -9,20 +7,36 @@ const audio = new AudioContext();
 const gainNode = audio.createGain();
 const osc = audio.createOscillator();
 
-let beatCounterElements = id.beatCounterTable.children;
-let metronome;
 let beatCounter = 0;
-let audioElements = document.getElementsByClassName("drone");
-let drones = document.getElementsByClassName("droneButton");
+
+let beatCounterElements = /** @type {HTMLParagraphElement}*/ (document.getElementById("beatCounterTable")).children;
+let audioElements = /** @type {HTMLCollectionOf<HTMLAudioElement>}*/ (document.getElementsByClassName("drone"));
+let beatsInput = /** @type {HTMLInputElement} */ (document.getElementById("beats"));
+let tempoInput = /** @type {HTMLInputElement} */ (document.getElementById("tempo"));
+let drones = /** @type {HTMLCollectionOf<HTMLButtonElement>} */ (document.getElementsByClassName("droneButton"));
+let savedTempos = /** @type {HTMLElement} */ (document.getElementById("savedTempos"));
+let normalBeat = /** @type {HTMLAudioElement} */ (document.getElementById("normal"));
+let accentBeat = /** @type {HTMLAudioElement} */ (document.getElementById("accent"));
+let playButton = /** @type {HTMLButtonElement} */ (document.getElementById("play"));
+let stopButton = /** @type {HTMLButtonElement} */ (document.getElementById("stop"));
+let challengeButton = /** @type {HTMLButtonElement} */ (document.getElementById("challenge"));
+let enableAccentButton = /** @type {HTMLButtonElement} */ (document.getElementById("enableAccent"));
+
+/**
+ * @type {setInterval | number}
+ */
 let randomGaps;
+/**
+ * @type {setInterval | number}
+ */
+let metronome;
 let droneNumber = 0;
 let accent = false;
 let oscillatorOn = false;
 
-
 window.onload = async function () {
     osc.start();
-    id.savedTempos.innerHTML = localStorage.getItem("temposSaved");
+    savedTempos.innerHTML = localStorage.getItem("temposSaved") || "";
     changeBeatCounter();
 
     let wakeLock = null;
@@ -50,24 +64,24 @@ window.onload = async function () {
 
 function changeBeatCounter() {
     for (let i = 0; i < beatCounterElements.length; i++) {
-        beatCounterElements[i].style.display = "none";
+        /** @type {HTMLParagraphElement} */ (beatCounterElements[i]).style.display = "none";
     }
 
-    for (let i = 0; i < +id.beats.value; i++) {
-        beatCounterElements[i].style.display = "flex";
+    for (let i = 0; i < +beatsInput.value; i++) {
+        /** @type {HTMLParagraphElement} */ (beatCounterElements[i]).style.display = "flex";
     }
 }
 
 function refreshCounter() {
-    id.accentBeat.pause();
-    id.accentBeat.currentTime = 0;
-    id.normalBeat.pause();
-    id.normalBeat.currentTime = 0;
+    accentBeat.pause();
+    accentBeat.currentTime = 0;
+    normalBeat.pause();
+    normalBeat.currentTime = 0;
 
     if (beatCounter === 0 && accent) {
-        id.accentBeat.play();
+        accentBeat.play();
     } else {
-        id.normalBeat.play();
+        normalBeat.play();
     }
 
     for (let i = 0; i < beatCounterElements.length; i++) {
@@ -78,42 +92,46 @@ function refreshCounter() {
 
     beatCounter++;
 
-    if (beatCounter > +id.beats.value - 1) {
+    if (beatCounter > +beatsInput.value - 1) {
         beatCounter = 0;
     }
 }
 
 oninput = function (event) {
-    if (id.beats.value !== "" && id.tempo.value !== "") {
+    if (beatsInput.value !== "" && tempoInput.value !== "") {
         changeBeatCounter();
-        if (id.playButton.innerHTML === stopIcon) {
-            clearInterval(metronome);
+        if (playButton.innerHTML === stopIcon) {
+            clearInterval( /** @type {number} */ (metronome));
             beatCounter = 0;
             refreshCounter();
-            metronome = setInterval(function () { refreshCounter(); }, min / id.tempo.value);
+            metronome = setInterval(function () { refreshCounter(); }, min / +tempoInput.value);
         }
     }
 }
 
 function playMetronome() {
-    if (id.playButton.innerHTML === playIcon && id.beats.value !== "" && id.tempo.value !== "") {
+    if (playButton.innerHTML === playIcon && beatsInput.value !== "" && tempoInput.value !== "") {
         refreshCounter();
-        id.playButton.innerHTML = stopIcon;
-        metronome = setInterval(function () { refreshCounter(); }, min / id.tempo.value);
-    } else if (id.playButton.innerHTML === stopIcon) {
-        clearInterval(metronome);
+        playButton.innerHTML = stopIcon;
+        metronome = setInterval(function () { refreshCounter(); }, min / +tempoInput.value);
+    } else if (playButton.innerHTML === stopIcon) {
+        clearInterval( /** @type {number} */ (metronome));
         for (let i = 0; i < beatCounterElements.length; i++) {
             beatCounterElements[i].id = "";
         }
-        id.playButton.innerHTML = playIcon;
+        playButton.innerHTML = playIcon;
         beatCounter = 0;
     }
 }
 
+/**
+ * @param {string} note 
+ */
 function playDrone(note) {
-    document.getElementById(note).play();
-    id.stop.style.display = "flex";
-    clearInterval(randomGaps);
+    let noteElement = /** @type {HTMLAudioElement} */ (document.getElementById(note));
+    noteElement.play();
+    stopButton.style.display = "flex";
+    clearInterval( /** @type {number} */ (randomGaps));
 }
 
 function stop() {
@@ -122,33 +140,33 @@ function stop() {
         audioElements[i].currentTime = 0;
     }
     osc.disconnect();
-    id.stop.style.display = "none";
+    stopButton.style.display = "none";
 }
 
 function deleteTempos() {
-    id.savedTempos.innerHTML = "";
-    localStorage.setItem("temposSaved", id.savedTempos.innerHTML);
+    savedTempos.innerHTML = "";
+    localStorage.setItem("temposSaved", savedTempos.innerHTML);
 }
 
 function saveTempo() {
     let newButton = document.createElement("button");
     newButton.onclick = function () {
-        document.getElementById("tempo").value = this.innerHTML;
-        document.getElementById("playButton").innerHTML = playIcon;
-        clearInterval(metronome);
+        tempoInput.value = newButton.innerHTML;
+        playButton.innerHTML = playIcon;
+        clearInterval(/** @type {number} */(metronome));
         beatCounter = 0;
         playMetronome();
     }
-    newButton.innerHTML = id.tempo.value;
-    id.savedTempos.appendChild(newButton);
-    localStorage.setItem("temposSaved", id.savedTempos.innerHTML);
+    newButton.innerHTML = tempoInput.value;
+    savedTempos.appendChild(newButton);
+    localStorage.setItem("temposSaved", savedTempos.innerHTML);
 }
 
 function toggleChallenge() {
     let droneSounds = document.getElementsByTagName("audio");
-    let randomMultiplier = Math.ceil(Math.random() * id.beats.value * 2);
-    if (id.challengeButton.innerHTML === swordsIcon) {
-        id.challengeButton.innerHTML = cancelIcon;
+    let randomMultiplier = Math.ceil(Math.random() * +beatsInput.value * 2);
+    if (challengeButton.innerHTML === swordsIcon) {
+        challengeButton.innerHTML = cancelIcon;
         randomGaps = setInterval(function () {
             if (droneSounds[0].muted === false && droneSounds[1].muted === false) {
                 for (let i = 0; i < 2; i++) {
@@ -159,17 +177,21 @@ function toggleChallenge() {
                     droneSounds[i].muted = false;
                 }
             }
-            randomMultiplier = Math.ceil(Math.random() * id.beats.value * 2);
-        }, min / id.tempo.value * randomMultiplier);
+            randomMultiplier = Math.ceil(Math.random() * +beatsInput.value * 2);
+        }, min / +tempoInput.value * randomMultiplier);
     } else {
-        id.challengeButton.innerHTML = swordsIcon;
-        clearInterval(randomGaps);
+        challengeButton.innerHTML = swordsIcon;
+        clearInterval(/** @type {number} */(randomGaps));
         for (let i = 0; i < 2; i++) {
             droneSounds[i].muted = false;
         }
     }
 }
 
+/**
+ * 
+ * @param {boolean} right 
+ */
 function scrollDrones(right) {
     for (let i = 0; i < drones.length; i++) {
         drones[i].style.display = "none";
@@ -180,8 +202,6 @@ function scrollDrones(right) {
         if (droneNumber > drones.length - 1) {
             droneNumber = 0;
         }
-
-
     } else {
         droneNumber--;
         if (droneNumber < 0) {
@@ -195,15 +215,18 @@ function scrollDrones(right) {
 function toggleAccent() {
     accent = !accent;
     if (accent) {
-        id.enableAccent.innerHTML = cancelIcon;
+        enableAccentButton.innerHTML = cancelIcon;
     } else {
-        id.enableAccent.innerHTML = `>`;
+        enableAccentButton.innerHTML = `>`;
     }
 }
 
+/**
+ * @param {number} frequency 
+ */
 function tuner(frequency) {
     osc.connect(gainNode);
-    id.stop.style.display = "flex";
+    stopButton.style.display = "flex";
 
     osc.frequency.value = frequency;
     gainNode.gain.value = 0.1;
