@@ -3,6 +3,7 @@ const playIcon = `<span class="material-symbols-outlined">play_arrow</span>`;
 const stopIcon = `<span class="material-symbols-outlined">stop</span>`;
 const swordsIcon = `<span class="material-symbols-outlined">swords</span>`;
 const cancelIcon = `<span class="material-symbols-outlined">cancel</span>`;
+const accentIcon = `<span class="material-symbols-outlined">star</span>`;
 const audio = new AudioContext();
 const gainNode = audio.createGain();
 const osc = audio.createOscillator();
@@ -15,11 +16,11 @@ let beatsInput = /** @type {HTMLInputElement} */ (document.getElementById("beats
 let tempoInput = /** @type {HTMLInputElement} */ (document.getElementById("tempo"));
 let drones = /** @type {HTMLCollectionOf<HTMLButtonElement>} */ (document.getElementsByClassName("droneButton"));
 let savedTempos = /** @type {HTMLElement} */ (document.getElementById("savedTempos"));
-let normalBeat = /** @type {HTMLAudioElement} */ (document.getElementById("normal"));
-let accentBeat = /** @type {HTMLAudioElement} */ (document.getElementById("accent"));
-let playButton = /** @type {HTMLButtonElement} */ (document.getElementById("play"));
+let normalBeat = /** @type {HTMLAudioElement} */ (document.getElementById("normalBeat"));
+let accentBeat = /** @type {HTMLAudioElement} */ (document.getElementById("accentBeat"));
+let playButton = /** @type {HTMLButtonElement} */ (document.getElementById("playButton"));
 let stopButton = /** @type {HTMLButtonElement} */ (document.getElementById("stop"));
-let challengeButton = /** @type {HTMLButtonElement} */ (document.getElementById("challenge"));
+let challengeButton = /** @type {HTMLButtonElement} */ (document.getElementById("challengeButton"));
 let enableAccentButton = /** @type {HTMLButtonElement} */ (document.getElementById("enableAccent"));
 
 /**
@@ -39,14 +40,6 @@ window.onload = async function () {
     savedTempos.innerHTML = localStorage.getItem("temposSaved") || "";
     changeBeatCounter();
 
-    let wakeLock = null;
-
-    try {
-        wakeLock = await navigator.wakeLock.request("screen");
-    } catch (err) {
-        console.log(err);
-    }
-
     for (let i = 0; i < audioElements.length; i++) {
         audioElements[i].volume = 0.15;
     }
@@ -59,6 +52,14 @@ window.onload = async function () {
 
     onclick = function (event) {
         audio.resume();
+    }
+
+    let wakeLock = null;
+
+    try {
+        wakeLock = await navigator.wakeLock.request("screen");
+    } catch (err) {
+        console.log(err);
     }
 }
 
@@ -217,7 +218,7 @@ function toggleAccent() {
     if (accent) {
         enableAccentButton.innerHTML = cancelIcon;
     } else {
-        enableAccentButton.innerHTML = `>`;
+        enableAccentButton.innerHTML = accentIcon;
     }
 }
 
