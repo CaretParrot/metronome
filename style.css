@@ -1,5 +1,5 @@
 body * {
-    font-size: calc(var(--base-unit) * 2) !important;
+    font-size: calc(var(--base-unit) * 2);
 }
 
 body {
@@ -11,8 +11,7 @@ body {
 }
 
 #activeBeat {
-    color: light-dark(var(--light-1), var(--dark-1));
-    background-color: light-dark(var(--dark-1), var(--light-1));
+    background-color: transparent;
 }
 
 #stop {
@@ -33,16 +32,9 @@ div {
 }
 
 span {
-    padding: auto;
     background-color: transparent;
 }
 
 #tuner {
     display: none;
-}
-
-@media (orientation: portrait) {
-    body * {
-        font-size: calc(var(--base-unit) * 1.5) !important;
-    }
 }
