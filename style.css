@@ -1,5 +1,5 @@
-body * {
-    font-size: calc(var(--base-unit) * 2);
+body *, span {
+    font-size: calc(var(--base-unit) * 2) !important;
 }
 
 body {
@@ -23,12 +23,14 @@ body {
     grid: auto / 1fr 1fr 1fr 1fr 1fr;
 }
 
+#homeWrapper {
+    display: flex;
+}
+
 div {
     display: flex;
     width: 100%;
-    justify-content: stretch;
     align-items: stretch;
-    align-content: stretch;
 }
 
 span {

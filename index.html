@@ -22,10 +22,35 @@
                         class="material-symbols-outlined">play_arrow</span></button>
                 <input id="tempo" type="number" step="1" min="30" max="240" value="60" />
                 <input id="beats" type="number" min="1" max="12" value="4" />
-                <button id="enableAccent" onclick="toggleAccent()"><span class="material-symbols-outlined">star</span></button>
+                <button id="enableAccent" onclick="toggleAccent()"><span
+                        class="material-symbols-outlined">star</span></button>
                 <button id="stop" onclick="stop()">Stop</button>
                 <button id="challengeButton" onclick="toggleChallenge()"><span
                         class="material-symbols-outlined">swords</span></button>
+            </div>
+            <div id="droneTable">
+                <button onclick="scrollDrones(false)"><span class="material-symbols-outlined">
+                        arrow_left_alt
+                    </span></button>
+                <button class="droneButton" onclick="playDrone('C');">C</button>
+                <button class="droneButton" onclick="playDrone('Db');">C♯/D♭</button>
+                <button class="droneButton" onclick="playDrone('D');">D</button>
+                <button class="droneButton" onclick="playDrone('Eb');">D♯/E♭</button>
+                <button class="droneButton" onclick="playDrone('E');">E</button>
+                <button class="droneButton" onclick="playDrone('F');">F</button>
+                <button class="droneButton" onclick="playDrone('Gb');">F♯/G♭</button>
+                <button class="droneButton" onclick="playDrone('G');">G</button>
+                <button class="droneButton" onclick="playDrone('Ab');">G♯/A♭</button>
+                <button class="droneButton" onclick="playDrone('A');">A</button>
+                <button class="droneButton" onclick="playDrone('Bb');">A♯/B♭</button>
+                <button class="droneButton" onclick="playDrone('B');">B</button>
+                <button onclick="scrollDrones(true)"><span class="material-symbols-outlined">
+                        arrow_right_alt
+                    </span></button>
+                <button onclick="saveTempo()"><span class="material-symbols-outlined">
+                        save</span></button>
+                <button onclick="deleteTempos()"><span class="material-symbols-outlined">
+                        delete</span></button>
             </div>
             <div id="beatCounterTable">
                 <p class="beats">1</p>
@@ -40,26 +65,6 @@
                 <p class="beats">10</p>
                 <p class="beats">11</p>
                 <p class="beats">12</p>
-            </div>
-            <div id="droneTable">
-                <button onclick="scrollDrones(false)">←</button>
-                <button class="droneButton" onclick="playDrone('C');">C</button>
-                <button class="droneButton" onclick="playDrone('Db');">C♯/D♭</button>
-                <button class="droneButton" onclick="playDrone('D');">D</button>
-                <button class="droneButton" onclick="playDrone('Eb');">D♯/E♭</button>
-                <button class="droneButton" onclick="playDrone('E');">E</button>
-                <button class="droneButton" onclick="playDrone('F');">F</button>
-                <button class="droneButton" onclick="playDrone('Gb');">F♯/G♭</button>
-                <button class="droneButton" onclick="playDrone('G');">G</button>
-                <button class="droneButton" onclick="playDrone('Ab');">G♯/A♭</button>
-                <button class="droneButton" onclick="playDrone('A');">A</button>
-                <button class="droneButton" onclick="playDrone('Bb');">A♯/B♭</button>
-                <button class="droneButton" onclick="playDrone('B');">B</button>
-                <button onclick="scrollDrones(true)">→</button>
-                <button onclick="saveTempo()"><span class="material-symbols-outlined">
-                        save</span></button>
-                <button onclick="deleteTempos()"><span class="material-symbols-outlined">
-                        delete</span></button>
             </div>
             <div id="tuner">
                 <button class="tunerButton" onclick="tuner(660)">E5</button>
@@ -114,4 +119,5 @@
     <audio id="Ab" class="drone" loop>
         <source src="./assets/Ab.ogg" />
     </audio>
+
 </html>
