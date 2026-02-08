@@ -190,7 +190,6 @@ function toggleChallenge() {
 }
 
 /**
- * 
  * @param {boolean} right 
  */
 function scrollDrones(right) {

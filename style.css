@@ -11,7 +11,7 @@ body {
 }
 
 #activeBeat {
-    background-color: transparent;
+    background-color: light-dark(hsl(var(--hue), var(--saturation), var(--light)), hsl(var(--hue), var(--saturation), var(--dark)));
 }
 
 #stop {
@@ -25,6 +25,8 @@ body {
 
 #homeWrapper {
     display: flex;
+    background-color: transparent;
+    border: none;
 }
 
 div {
