@@ -11,16 +11,25 @@ body {
 }
 
 #activeBeat {
-    background-color: light-dark(hsl(var(--hue), var(--saturation), var(--light)), hsl(var(--hue), var(--saturation), var(--dark)));
+    background-color: transparent;
 }
 
 #stop {
     display: none;
 }
 
-#droneTable, #tuner {
+#savedTempos {
+    background-color: var(--accent-container);
+}
+
+#droneTable {
+    background-color: var(--accent-container);
     display: grid;
     grid: auto / 1fr 1fr 1fr 1fr 1fr;
+}
+
+#controls {
+    background-color: var(--accent-container);
 }
 
 #homeWrapper {
