@@ -1,9 +1,10 @@
-body *, span {
-    font-size: calc(var(--base-unit) * 2) !important;
-}
-
 body {
     height: 100%;
+}
+
+button,
+input {
+    background-color: var(--element);
 }
 
 .beats {
@@ -18,37 +19,42 @@ body {
     display: none;
 }
 
-#savedTempos {
-    background-color: var(--accent-container);
-}
-
 #droneTable {
-    background-color: var(--accent-container);
     display: grid;
     grid: auto / 1fr 1fr 1fr 1fr 1fr;
 }
 
 #controls {
-    background-color: var(--accent-container);
+    display: grid;
+    grid: auto / 1fr 1fr 1fr 1fr 1fr;
 }
 
 #homeWrapper {
-    display: flex;
     background-color: transparent;
     border: none;
-    height: 100%;
 }
 
 div {
     display: flex;
-    width: 100%;
+    min-width: 100%;
     align-items: stretch;
 }
 
 span {
+    display: flex !important;
+    justify-content: center;
     background-color: transparent;
 }
 
-#tuner {
-    display: none;
+@media (orientation: portrait) {
+
+    #controls {
+        display: grid;
+        grid: auto / 1fr 1fr 1fr;
+    }
+
+    #droneTable {
+        display: grid;
+        grid: auto / 1fr 1fr 1fr;
+    }
 }

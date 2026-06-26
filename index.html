@@ -20,7 +20,7 @@
                 <button id="playButton" onclick="playMetronome()"><span
                         class="material-symbols-outlined">play_arrow</span></button>
                 <input id="tempo" type="number" step="1" min="30" max="240" value="60" />
-                <input id="beats" type="number" min="1" max="12" value="4" />
+                <input id="beats" type="number" min="1" max="12" value="2" />
                 <button id="enableAccent" onclick="toggleAccent()"><span
                         class="material-symbols-outlined">star</span></button>
                 <button id="stop" onclick="stop()">Stop</button>
@@ -32,17 +32,17 @@
                         arrow_left_alt
                     </span></button>
                 <button class="droneButton" onclick="playDrone('C');">C</button>
-                <button class="droneButton" onclick="playDrone('Db');">C♯/D♭</button>
-                <button class="droneButton" onclick="playDrone('D');">D</button>
-                <button class="droneButton" onclick="playDrone('Eb');">D♯/E♭</button>
-                <button class="droneButton" onclick="playDrone('E');">E</button>
-                <button class="droneButton" onclick="playDrone('F');">F</button>
-                <button class="droneButton" onclick="playDrone('Gb');">F♯/G♭</button>
-                <button class="droneButton" onclick="playDrone('G');">G</button>
-                <button class="droneButton" onclick="playDrone('Ab');">G♯/A♭</button>
-                <button class="droneButton" onclick="playDrone('A');">A</button>
-                <button class="droneButton" onclick="playDrone('Bb');">A♯/B♭</button>
-                <button class="droneButton" onclick="playDrone('B');">B</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('Db');">C♯/D♭</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('D');">D</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('Eb');">D♯/E♭</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('E');">E</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('F');">F</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('Gb');">F♯/G♭</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('G');">G</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('Ab');">G♯/A♭</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('A');">A</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('Bb');">A♯/B♭</button>
+                <button class="droneButton" style="display: none;" onclick="playDrone('B');">B</button>
                 <button onclick="scrollDrones(true)"><span class="material-symbols-outlined">
                         arrow_right_alt
                     </span></button>
@@ -54,16 +54,16 @@
             <div id="beatCounterTable">
                 <p class="beats">1</p>
                 <p class="beats">2</p>
-                <p class="beats">3</p>
-                <p class="beats">4</p>
-                <p class="beats">5</p>
-                <p class="beats">6</p>
-                <p class="beats">7</p>
-                <p class="beats">8</p>
-                <p class="beats">9</p>
-                <p class="beats">10</p>
-                <p class="beats">11</p>
-                <p class="beats">12</p>
+                <p style="display: none;" class="beats">3</p>
+                <p style="display: none;" class="beats">4</p>
+                <p style="display: none;" class="beats">5</p>
+                <p style="display: none;" class="beats">6</p>
+                <p style="display: none;" class="beats">7</p>
+                <p style="display: none;" class="beats">8</p>
+                <p style="display: none;" class="beats">9</p>
+                <p style="display: none;" class="beats">10</p>
+                <p style="display: none;" class="beats">11</p>
+                <p style="display: none;" class="beats">12</p>
             </div>
             <div id="savedTempos"></div>
         </div>

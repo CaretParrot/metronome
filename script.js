@@ -102,7 +102,7 @@ oninput = function (event) {
     if (beatsInput.value !== "" && tempoInput.value !== "") {
         changeBeatCounter();
         if (playButton.innerHTML === stopIcon) {
-            clearInterval( /** @type {number} */ (metronome));
+            clearInterval( /** @type {number} */(metronome));
             beatCounter = 0;
             refreshCounter();
             metronome = setInterval(function () { refreshCounter(); }, min / +tempoInput.value);
@@ -116,7 +116,7 @@ function playMetronome() {
         playButton.innerHTML = stopIcon;
         metronome = setInterval(function () { refreshCounter(); }, min / +tempoInput.value);
     } else if (playButton.innerHTML === stopIcon) {
-        clearInterval( /** @type {number} */ (metronome));
+        clearInterval( /** @type {number} */(metronome));
         for (let i = 0; i < beatCounterElements.length; i++) {
             beatCounterElements[i].id = "";
         }
@@ -132,7 +132,7 @@ function playDrone(note) {
     let noteElement = /** @type {HTMLAudioElement} */ (document.getElementById(note));
     noteElement.play();
     stopButton.style.display = "flex";
-    clearInterval( /** @type {number} */ (randomGaps));
+    clearInterval( /** @type {number} */(randomGaps));
 }
 
 function stop() {
@@ -231,4 +231,15 @@ function tuner(frequency) {
     osc.frequency.value = frequency;
     gainNode.gain.value = 0.1;
     gainNode.connect(audio.destination);
+}
+
+onkeydown = function (event) {
+    switch (event.key) {
+        case "ArrowLeft":
+        case "ArrowRight":
+            // @ts-expect-error
+            document.documentElement.style.setProperty("--hue", String(RandomPlus.randomInteger(0, 360)));
+            console.log("Pressed");
+            break;
+    }
 }
