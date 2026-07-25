@@ -11,6 +11,7 @@ const osc = audio.createOscillator();
 let beatCounter = 0;
 
 let beatCounterElements = /** @type {HTMLParagraphElement}*/ (document.getElementById("beatCounterTable")).children;
+let controls = /** @type {HTMLDivElement} */ (document.getElementById("controls"));
 let audioElements = /** @type {HTMLCollectionOf<HTMLAudioElement>}*/ (document.getElementsByClassName("drone"));
 let beatsInput = /** @type {HTMLInputElement} */ (document.getElementById("beats"));
 let tempoInput = /** @type {HTMLInputElement} */ (document.getElementById("tempo"));
@@ -19,9 +20,9 @@ let savedTempos = /** @type {HTMLElement} */ (document.getElementById("savedTemp
 let normalBeat = /** @type {HTMLAudioElement} */ (document.getElementById("normalBeat"));
 let accentBeat = /** @type {HTMLAudioElement} */ (document.getElementById("accentBeat"));
 let playButton = /** @type {HTMLButtonElement} */ (document.getElementById("playButton"));
-let stopButton = /** @type {HTMLButtonElement} */ (document.getElementById("stop"));
 let challengeButton = /** @type {HTMLButtonElement} */ (document.getElementById("challengeButton"));
 let enableAccentButton = /** @type {HTMLButtonElement} */ (document.getElementById("enableAccent"));
+let stopButton = /** @type {HTMLButtonElement} */ (document.getElementById("stop"));
 
 /**
  * @type {setInterval | number}
@@ -131,7 +132,8 @@ function playMetronome() {
 function playDrone(note) {
     let noteElement = /** @type {HTMLAudioElement} */ (document.getElementById(note));
     noteElement.play();
-    stopButton.style.display = "flex";
+    stopButton.disabled = false;
+    
     clearInterval( /** @type {number} */(randomGaps));
 }
 
@@ -140,8 +142,9 @@ function stop() {
         audioElements[i].pause();
         audioElements[i].currentTime = 0;
     }
+
+    stopButton.disabled = true;
     osc.disconnect();
-    stopButton.style.display = "none";
 }
 
 function deleteTempos() {
@@ -151,6 +154,7 @@ function deleteTempos() {
 
 function saveTempo() {
     let newButton = document.createElement("button");
+
     newButton.onclick = function () {
         tempoInput.value = newButton.innerHTML;
         playButton.innerHTML = playIcon;
@@ -158,6 +162,7 @@ function saveTempo() {
         beatCounter = 0;
         playMetronome();
     }
+
     newButton.innerHTML = tempoInput.value;
     savedTempos.appendChild(newButton);
     localStorage.setItem("temposSaved", savedTempos.innerHTML);
@@ -226,7 +231,6 @@ function toggleAccent() {
  */
 function tuner(frequency) {
     osc.connect(gainNode);
-    stopButton.style.display = "flex";
 
     osc.frequency.value = frequency;
     gainNode.gain.value = 0.1;

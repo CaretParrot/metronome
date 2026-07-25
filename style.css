@@ -15,10 +15,6 @@ input {
     background-color: transparent;
 }
 
-#stop {
-    display: none;
-}
-
 #droneTable {
     display: grid;
     grid: auto / 1fr 1fr 1fr 1fr 1fr;
@@ -26,7 +22,7 @@ input {
 
 #controls {
     display: grid;
-    grid: auto / 1fr 1fr 1fr 1fr 1fr;
+    grid: auto / 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 #homeWrapper {
@@ -44,6 +40,12 @@ span {
     display: flex !important;
     justify-content: center;
     background-color: transparent;
+}
+
+button[disabled="true"] {
+    background-color: light-dark(hsl(var(--hue), 0%, var(--light-element)), hsl(var(--hue), 0%, var(--dark-element)));
+    box-shadow: none;
+    cursor: auto;
 }
 
 @media (orientation: portrait) {

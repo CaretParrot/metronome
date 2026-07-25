@@ -21,5 +21,5 @@ The application also changes color every time you open it!
 - Delete all tempos using the "Delete All" button.
 
 # Want This As a Mobile App?
-- Go to https://caretparrot.github.io/Metronome on your mobile device.
+- Go to https://caretparrot.github.io/metronome on your mobile device.
 - Click on the three dots (or menu button) on the address bar and look for an option that allows you to download the app!
